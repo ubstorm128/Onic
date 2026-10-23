@@ -3,11 +3,11 @@
 </p>
 
 <p align="center">
-  <a href="#-animated-architecture-in-action"><img src="https://img.shields.io/badge/Architecture-Cross--Attention%20Transformer-6366f1?style=for-the-badge&logo=pytorch&logoColor=white" alt="Architecture"/></a>
-  <a href="#-empirical-benchmarks"><img src="https://img.shields.io/badge/Peak%20Macro--F1-99.56%25-059669?style=for-the-badge" alt="Macro F1"/></a>
-  <a href="#-empirical-benchmarks"><img src="https://img.shields.io/badge/Macro--AUC-0.9996-0284c7?style=for-the-badge" alt="Macro AUC"/></a>
-  <a href="#-clinical-web-simulator"><img src="https://img.shields.io/badge/Clinical%20UI-FastAPI%20%2B%20Vanilla%20JS-d97706?style=for-the-badge&logo=fastapi&logoColor=white" alt="Web UI"/></a>
-  <a href="#-academic-credits"><img src="https://img.shields.io/badge/Institution-St.%20Anthony's%20College-8b5cf6?style=for-the-badge" alt="Institution"/></a>
+  <a href="#-animated-architecture-in-action"><img src="https://img.shields.io/badge/Architecture-Cross--Attention%20Transformer-1e293b?style=for-the-badge&logo=pytorch&logoColor=white" alt="Architecture"/></a>
+  <a href="#-empirical-benchmarks"><img src="https://img.shields.io/badge/Peak%20Macro--F1-99.56%25-047857?style=for-the-badge" alt="Macro F1"/></a>
+  <a href="#-empirical-benchmarks"><img src="https://img.shields.io/badge/Macro--AUC-0.9996-1e40af?style=for-the-badge" alt="Macro AUC"/></a>
+  <a href="#-clinical-web-simulator"><img src="https://img.shields.io/badge/Clinical%20UI-FastAPI%20%2B%20Vanilla%20JS-334155?style=for-the-badge&logo=fastapi&logoColor=white" alt="Web UI"/></a>
+  <a href="#-academic-credits"><img src="https://img.shields.io/badge/Institution-St.%20Anthony's%20College-4338ca?style=for-the-badge" alt="Institution"/></a>
 </p>
 
 <p align="center">
@@ -159,7 +159,7 @@ Evaluated across **2,263 patient samples** (TCGA cohort) over 5 random seeds usi
 | **C9** | Missing miRNA + Methy | mRNA, CNV | miRNA, Methy | 98.20% | **98.80%** | +0.60% |
 | **C10** | Missing CNV + Methy | mRNA, miRNA | CNV, Methy | 98.50% | **98.90%** | +0.40% |
 | **C11** | Methy Only (75% Missing) | Methy | mRNA, miRNA, CNV | 91.20% | **93.37%** | **+2.17%** |
-| **C12** | **CNV Only (Stress Test)** | **CNV** | **mRNA, miRNA, Methy** | 65.60% | **74.12%** | **+8.52% ⭐** |
+| **C12** | **CNV Only (Stress Test)** | **CNV** | **mRNA, miRNA, Methy** | 65.60% | **74.12%** | **+8.52%** |
 | **C13** | miRNA Only (75% Missing) | miRNA | mRNA, CNV, Methy | 82.40% | **87.20%** | **+4.80%** |
 | **C14** | mRNA Only (75% Missing) | mRNA | miRNA, CNV, Methy | 97.60% | **98.40%** | +0.80% |
 
