@@ -1,0 +1,51 @@
+# Experiment & Training Configuration
+# ===================================
+
+# Random Seeds for Multi-seed Evaluation
+seeds: [42, 123, 456, 789, 1024]
+default_seed: 42
+
+# Training Hyperparameters
+training:
+  batch_size: 64
+  max_epochs: 100
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  patience: 15
+  min_delta: 0.0005
+  lr_scheduler: "cosine"  # "cosine", "step", "reduce_on_plateau"
+  warmup_epochs: 5
+  class_weights: "balanced"  # "balanced" or null
+
+# Missing Modality Strategies
+missing_modality_training:
+  # Strategy S1: Complete only
+  s1_complete:
+    modality_dropout_prob: 0.0
+  # Strategy S2: Fixed Modality Dropout
+  s2_dropout:
+    modality_dropout_prob: 0.3
+    min_modalities_present: 1
+  # Strategy S3: Curriculum Modality Dropout
+  s3_curriculum:
+    start_prob: 0.0
+    end_prob: 0.4
+    warmup_epochs: 10
+
+# Hardware
+device: "cuda"  # Auto falls back to "cpu" if cuda unavailable
+num_workers: 0
+
+# Evaluation & Metrics
+evaluation:
+  primary_metric: "macro_f1"
+  secondary_metric: "balanced_accuracy"
+  metrics: ["macro_f1", "micro_f1", "weighted_f1", "accuracy", "balanced_accuracy", "matthews_corrcoef"]
+  significance_test: "wilcoxon"
+
+# Artifacts
+paths:
+  checkpoints_dir: "artifacts/models"
+  metrics_dir: "artifacts/metrics"
+  figures_dir: "artifacts/figures"
+  reports_dir: "reports"

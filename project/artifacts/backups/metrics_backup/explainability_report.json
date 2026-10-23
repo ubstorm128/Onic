@@ -1,0 +1,913 @@
+{
+  "model_strategy": "s2_dropout",
+  "seed": 42,
+  "modality_ablation": {
+    "baseline_f1": 0.9944927536231885,
+    "mRNA_ablated_f1": 0.9945,
+    "mRNA_importance_drop": 0.0,
+    "miRNA_ablated_f1": 0.9945,
+    "miRNA_importance_drop": 0.0,
+    "CNV_ablated_f1": 0.9973,
+    "CNV_importance_drop": -0.0028,
+    "Methy_ablated_f1": 0.9973,
+    "Methy_importance_drop": -0.0028
+  },
+  "modality_permutation": {
+    "mRNA": {
+      "mean_drop": 0.0005419172480910506,
+      "std_drop": 0.002054578895901204,
+      "baseline_f1": 0.9944927536231885
+    },
+    "miRNA": {
+      "mean_drop": -0.0005569408834861456,
+      "std_drop": 0.0011015284929271692,
+      "baseline_f1": 0.9944927536231885
+    },
+    "CNV": {
+      "mean_drop": 0.00555077417629255,
+      "std_drop": 0.0017746531396699182,
+      "baseline_f1": 0.9944927536231885
+    },
+    "Methy": {
+      "mean_drop": 0.0005201242417932183,
+      "std_drop": 0.0020508113823605044,
+      "baseline_f1": 0.9944927536231885
+    }
+  },
+  "inter_modality_attention": {
+    "modalities": [
+      "mRNA",
+      "miRNA",
+      "CNV",
+      "Methy"
+    ],
+    "matrix": [
+      [
+        0.3400559723377228,
+        0.2609679698944092,
+        0.05686836317181587,
+        0.34210747480392456
+      ],
+      [
+        0.34404122829437256,
+        0.26489999890327454,
+        0.05389142408967018,
+        0.337167352437973
+      ],
+      [
+        0.30858469009399414,
+        0.28419578075408936,
+        0.10664614289999008,
+        0.3005731999874115
+      ],
+      [
+        0.344876229763031,
+        0.25274744629859924,
+        0.05357532575726509,
+        0.3488008975982666
+      ]
+    ]
+  },
+  "top_features_per_cancer": {
+    "BRCA": {
+      "mRNA": [
+        {
+          "rank": 1,
+          "feature": "SFRP1",
+          "attribution_score": 0.0001731579686747864
+        },
+        {
+          "rank": 2,
+          "feature": "C5orf46",
+          "attribution_score": 0.00017250982637051493
+        },
+        {
+          "rank": 3,
+          "feature": "STAC2",
+          "attribution_score": 0.00014584261225536466
+        },
+        {
+          "rank": 4,
+          "feature": "ERN2",
+          "attribution_score": 0.00014473269402515143
+        },
+        {
+          "rank": 5,
+          "feature": "MIA",
+          "attribution_score": 0.00013655415386892855
+        },
+        {
+          "rank": 6,
+          "feature": "HOTAIR",
+          "attribution_score": 0.00013388274237513542
+        },
+        {
+          "rank": 7,
+          "feature": "NOS2",
+          "attribution_score": 0.000132051864056848
+        },
+        {
+          "rank": 8,
+          "feature": "MAB21L1",
+          "attribution_score": 0.00012765386782120913
+        },
+        {
+          "rank": 9,
+          "feature": "C8orf85",
+          "attribution_score": 0.00012746837455779314
+        },
+        {
+          "rank": 10,
+          "feature": "ROPN1B",
+          "attribution_score": 0.00012643347145058215
+        }
+      ],
+      "miRNA": [
+        {
+          "rank": 1,
+          "feature": "hsa-miR-10b-3p",
+          "attribution_score": 0.0013591231545433402
+        },
+        {
+          "rank": 2,
+          "feature": "hsa-miR-190b",
+          "attribution_score": 0.001352669671177864
+        },
+        {
+          "rank": 3,
+          "feature": "hsa-miR-196a-5p",
+          "attribution_score": 0.001299861934967339
+        },
+        {
+          "rank": 4,
+          "feature": "hsa-miR-615-3p",
+          "attribution_score": 0.001243349863216281
+        },
+        {
+          "rank": 5,
+          "feature": "hsa-miR-10a-3p",
+          "attribution_score": 0.0011867911089211702
+        },
+        {
+          "rank": 6,
+          "feature": "hsa-miR-31-3p",
+          "attribution_score": 0.0011485142167657614
+        },
+        {
+          "rank": 7,
+          "feature": "hsa-miR-193a-5p",
+          "attribution_score": 0.0011013319017365575
+        },
+        {
+          "rank": 8,
+          "feature": "hsa-miR-5683",
+          "attribution_score": 0.0010970726143568754
+        },
+        {
+          "rank": 9,
+          "feature": "hsa-miR-296-3p",
+          "attribution_score": 0.0010709648486226797
+        },
+        {
+          "rank": 10,
+          "feature": "hsa-miR-934",
+          "attribution_score": 0.0010680650593712926
+        }
+      ],
+      "CNV": [
+        {
+          "rank": 1,
+          "feature": "TTI2",
+          "attribution_score": 0.00012512411922216415
+        },
+        {
+          "rank": 2,
+          "feature": "SNORD13",
+          "attribution_score": 0.0001238582335645333
+        },
+        {
+          "rank": 3,
+          "feature": "FUT10",
+          "attribution_score": 0.00011466789874248207
+        },
+        {
+          "rank": 4,
+          "feature": "MAK16",
+          "attribution_score": 0.00011055506183765829
+        },
+        {
+          "rank": 5,
+          "feature": "FBXO25",
+          "attribution_score": 0.00010929729614872485
+        },
+        {
+          "rank": 6,
+          "feature": "SNORA70|ENSG00000252505.1",
+          "attribution_score": 0.00010853402636712417
+        },
+        {
+          "rank": 7,
+          "feature": "GATA4",
+          "attribution_score": 0.00010647960152709857
+        },
+        {
+          "rank": 8,
+          "feature": "RNA5SP263",
+          "attribution_score": 0.00010616621875669807
+        },
+        {
+          "rank": 9,
+          "feature": "RPL23AP53",
+          "attribution_score": 0.00010516232578083873
+        },
+        {
+          "rank": 10,
+          "feature": "TDRP",
+          "attribution_score": 0.00010516191832721233
+        }
+      ],
+      "Methy": [
+        {
+          "rank": 1,
+          "feature": "cg10818284",
+          "attribution_score": 0.0004923262167721987
+        },
+        {
+          "rank": 2,
+          "feature": "cg08360726",
+          "attribution_score": 0.00045309311826713383
+        },
+        {
+          "rank": 3,
+          "feature": "cg27656658",
+          "attribution_score": 0.0004520797519944608
+        },
+        {
+          "rank": 4,
+          "feature": "cg27219841",
+          "attribution_score": 0.0004435375740285963
+        },
+        {
+          "rank": 5,
+          "feature": "cg17005319",
+          "attribution_score": 0.00041760946623981
+        },
+        {
+          "rank": 6,
+          "feature": "cg21986027",
+          "attribution_score": 0.00041411109850741923
+        },
+        {
+          "rank": 7,
+          "feature": "cg15506703",
+          "attribution_score": 0.00041379372123628855
+        },
+        {
+          "rank": 8,
+          "feature": "cg22900057",
+          "attribution_score": 0.00041352887637913227
+        },
+        {
+          "rank": 9,
+          "feature": "cg23230478",
+          "attribution_score": 0.0004052109143231064
+        },
+        {
+          "rank": 10,
+          "feature": "cg08847856",
+          "attribution_score": 0.00040037246071733534
+        }
+      ]
+    },
+    "HNSC": {
+      "mRNA": [
+        {
+          "rank": 1,
+          "feature": "MIA",
+          "attribution_score": 0.000993546680547297
+        },
+        {
+          "rank": 2,
+          "feature": "ERN2",
+          "attribution_score": 0.0008638190920464694
+        },
+        {
+          "rank": 3,
+          "feature": "DMBT1",
+          "attribution_score": 0.0008478853269480169
+        },
+        {
+          "rank": 4,
+          "feature": "C17orf93",
+          "attribution_score": 0.0008115543751046062
+        },
+        {
+          "rank": 5,
+          "feature": "B3GNT6",
+          "attribution_score": 0.0007729670614935458
+        },
+        {
+          "rank": 6,
+          "feature": "SFRP1",
+          "attribution_score": 0.0007650182815268636
+        },
+        {
+          "rank": 7,
+          "feature": "TMPRSS11A",
+          "attribution_score": 0.0007612134795635939
+        },
+        {
+          "rank": 8,
+          "feature": "FOXI1",
+          "attribution_score": 0.0007570012821815908
+        },
+        {
+          "rank": 9,
+          "feature": "CRNN",
+          "attribution_score": 0.000755178218241781
+        },
+        {
+          "rank": 10,
+          "feature": "KRT4",
+          "attribution_score": 0.0007369545637629926
+        }
+      ],
+      "miRNA": [
+        {
+          "rank": 1,
+          "feature": "hsa-miR-6720-3p",
+          "attribution_score": 0.00488934526219964
+        },
+        {
+          "rank": 2,
+          "feature": "hsa-miR-944",
+          "attribution_score": 0.004778430797159672
+        },
+        {
+          "rank": 3,
+          "feature": "hsa-miR-30c-2-3p",
+          "attribution_score": 0.0043357363902032375
+        },
+        {
+          "rank": 4,
+          "feature": "hsa-miR-34c-3p",
+          "attribution_score": 0.003992906771600246
+        },
+        {
+          "rank": 5,
+          "feature": "hsa-miR-4652-5p",
+          "attribution_score": 0.003605492180213332
+        },
+        {
+          "rank": 6,
+          "feature": "hsa-miR-30a-3p",
+          "attribution_score": 0.0035993417259305716
+        },
+        {
+          "rank": 7,
+          "feature": "hsa-miR-144-5p",
+          "attribution_score": 0.003356251632794738
+        },
+        {
+          "rank": 8,
+          "feature": "hsa-miR-508-5p",
+          "attribution_score": 0.0032847877591848373
+        },
+        {
+          "rank": 9,
+          "feature": "hsa-miR-27a-5p",
+          "attribution_score": 0.0031215327326208353
+        },
+        {
+          "rank": 10,
+          "feature": "hsa-miR-6510-3p",
+          "attribution_score": 0.0030610132962465286
+        }
+      ],
+      "CNV": [
+        {
+          "rank": 1,
+          "feature": "PPFIA1",
+          "attribution_score": 0.00021992721303831786
+        },
+        {
+          "rank": 2,
+          "feature": "ANO1",
+          "attribution_score": 0.0001866319216787815
+        },
+        {
+          "rank": 3,
+          "feature": "IMMP2L",
+          "attribution_score": 0.00017254758859053254
+        },
+        {
+          "rank": 4,
+          "feature": "MIR3664",
+          "attribution_score": 0.00017094291979447007
+        },
+        {
+          "rank": 5,
+          "feature": "SHANK2",
+          "attribution_score": 0.00016994726320262998
+        },
+        {
+          "rank": 6,
+          "feature": "WTAPP1",
+          "attribution_score": 0.00016877491725608706
+        },
+        {
+          "rank": 7,
+          "feature": "DHCR7",
+          "attribution_score": 0.0001684292365098372
+        },
+        {
+          "rank": 8,
+          "feature": "C8orf74",
+          "attribution_score": 0.00016199261881411076
+        },
+        {
+          "rank": 9,
+          "feature": "TMEM130",
+          "attribution_score": 0.00016115099424496293
+        },
+        {
+          "rank": 10,
+          "feature": "DEFA1B",
+          "attribution_score": 0.00016007403610274196
+        }
+      ],
+      "Methy": [
+        {
+          "rank": 1,
+          "feature": "cg27342919",
+          "attribution_score": 0.0010700561106204987
+        },
+        {
+          "rank": 2,
+          "feature": "cg27466845",
+          "attribution_score": 0.000883929431438446
+        },
+        {
+          "rank": 3,
+          "feature": "cg14972210",
+          "attribution_score": 0.0008815567125566304
+        },
+        {
+          "rank": 4,
+          "feature": "cg00750880",
+          "attribution_score": 0.0008320595370605588
+        },
+        {
+          "rank": 5,
+          "feature": "cg17005319",
+          "attribution_score": 0.0008217431604862213
+        },
+        {
+          "rank": 6,
+          "feature": "cg23230478",
+          "attribution_score": 0.0008165413164533675
+        },
+        {
+          "rank": 7,
+          "feature": "cg01736164",
+          "attribution_score": 0.0008120847051031888
+        },
+        {
+          "rank": 8,
+          "feature": "cg16922937",
+          "attribution_score": 0.0008116037352010608
+        },
+        {
+          "rank": 9,
+          "feature": "rs1510189",
+          "attribution_score": 0.0007924656965769827
+        },
+        {
+          "rank": 10,
+          "feature": "cg10818284",
+          "attribution_score": 0.0007914190646260977
+        }
+      ]
+    },
+    "LGG": {
+      "mRNA": [
+        {
+          "rank": 1,
+          "feature": "CNTNAP4",
+          "attribution_score": 0.00022005854407325387
+        },
+        {
+          "rank": 2,
+          "feature": "C8orf46",
+          "attribution_score": 0.00021649777772836387
+        },
+        {
+          "rank": 3,
+          "feature": "BAALC",
+          "attribution_score": 0.00021111179376021028
+        },
+        {
+          "rank": 4,
+          "feature": "TTYH1",
+          "attribution_score": 0.00020502801635302603
+        },
+        {
+          "rank": 5,
+          "feature": "CTNND2",
+          "attribution_score": 0.0002008002920774743
+        },
+        {
+          "rank": 6,
+          "feature": "GRB7",
+          "attribution_score": 0.00019798889115918428
+        },
+        {
+          "rank": 7,
+          "feature": "CTNNA2",
+          "attribution_score": 0.00019784722826443613
+        },
+        {
+          "rank": 8,
+          "feature": "GFAP",
+          "attribution_score": 0.00019513434381224215
+        },
+        {
+          "rank": 9,
+          "feature": "PAX9",
+          "attribution_score": 0.00019203766714781523
+        },
+        {
+          "rank": 10,
+          "feature": "EPS8L1",
+          "attribution_score": 0.00019173625332769006
+        }
+      ],
+      "miRNA": [
+        {
+          "rank": 1,
+          "feature": "hsa-miR-200b-5p",
+          "attribution_score": 0.000929924426600337
+        },
+        {
+          "rank": 2,
+          "feature": "hsa-miR-217",
+          "attribution_score": 0.0008332867873832583
+        },
+        {
+          "rank": 3,
+          "feature": "hsa-miR-99b-3p",
+          "attribution_score": 0.000805464806035161
+        },
+        {
+          "rank": 4,
+          "feature": "hsa-miR-143-5p",
+          "attribution_score": 0.0007659535040147603
+        },
+        {
+          "rank": 5,
+          "feature": "hsa-miR-9-5p",
+          "attribution_score": 0.0007640444673597813
+        },
+        {
+          "rank": 6,
+          "feature": "hsa-miR-200c-3p",
+          "attribution_score": 0.000712490756995976
+        },
+        {
+          "rank": 7,
+          "feature": "hsa-miR-141-3p",
+          "attribution_score": 0.000672029098495841
+        },
+        {
+          "rank": 8,
+          "feature": "hsa-miR-199b-3p",
+          "attribution_score": 0.000651405774988234
+        },
+        {
+          "rank": 9,
+          "feature": "hsa-miR-942-5p",
+          "attribution_score": 0.0006265966803766787
+        },
+        {
+          "rank": 10,
+          "feature": "hsa-miR-141-5p",
+          "attribution_score": 0.000626254070084542
+        }
+      ],
+      "CNV": [
+        {
+          "rank": 1,
+          "feature": "FIP1L1",
+          "attribution_score": 0.00012220490316394717
+        },
+        {
+          "rank": 2,
+          "feature": "PDGFRA",
+          "attribution_score": 0.00011056058428948745
+        },
+        {
+          "rank": 3,
+          "feature": "MET",
+          "attribution_score": 0.00011003742838511243
+        },
+        {
+          "rank": 4,
+          "feature": "ST7",
+          "attribution_score": 0.00010139257210539654
+        },
+        {
+          "rank": 5,
+          "feature": "CDK6",
+          "attribution_score": 9.978805610444397e-05
+        },
+        {
+          "rank": 6,
+          "feature": "RN7SL7P",
+          "attribution_score": 9.900919394567609e-05
+        },
+        {
+          "rank": 7,
+          "feature": "GATAD1",
+          "attribution_score": 9.887811756925657e-05
+        },
+        {
+          "rank": 8,
+          "feature": "MIR489",
+          "attribution_score": 9.705733828013763e-05
+        },
+        {
+          "rank": 9,
+          "feature": "PEX1",
+          "attribution_score": 9.58541058935225e-05
+        },
+        {
+          "rank": 10,
+          "feature": "ARPC1A",
+          "attribution_score": 9.56992371357046e-05
+        }
+      ],
+      "Methy": [
+        {
+          "rank": 1,
+          "feature": "cg24882673",
+          "attribution_score": 0.0001339624432148412
+        },
+        {
+          "rank": 2,
+          "feature": "cg14676272",
+          "attribution_score": 0.000133243142045103
+        },
+        {
+          "rank": 3,
+          "feature": "cg23460250",
+          "attribution_score": 0.00012954870180692524
+        },
+        {
+          "rank": 4,
+          "feature": "cg05970721",
+          "attribution_score": 0.00012753951887134463
+        },
+        {
+          "rank": 5,
+          "feature": "cg01736164",
+          "attribution_score": 0.00012470835645217448
+        },
+        {
+          "rank": 6,
+          "feature": "cg19695507",
+          "attribution_score": 0.00012377783423289657
+        },
+        {
+          "rank": 7,
+          "feature": "cg13449535",
+          "attribution_score": 0.00012368052557576448
+        },
+        {
+          "rank": 8,
+          "feature": "cg27179101",
+          "attribution_score": 0.0001220767735503614
+        },
+        {
+          "rank": 9,
+          "feature": "cg23591302",
+          "attribution_score": 0.0001220720005221665
+        },
+        {
+          "rank": 10,
+          "feature": "cg23668057",
+          "attribution_score": 0.00012150834663771093
+        }
+      ]
+    },
+    "THCA": {
+      "mRNA": [
+        {
+          "rank": 1,
+          "feature": "SLC26A4",
+          "attribution_score": 0.00011579099373193458
+        },
+        {
+          "rank": 2,
+          "feature": "FCGBP",
+          "attribution_score": 0.00010431621194584295
+        },
+        {
+          "rank": 3,
+          "feature": "PDE1A",
+          "attribution_score": 0.00010395464050816372
+        },
+        {
+          "rank": 4,
+          "feature": "FRMD3",
+          "attribution_score": 9.753670019563287e-05
+        },
+        {
+          "rank": 5,
+          "feature": "IGFBP6",
+          "attribution_score": 9.386896272189915e-05
+        },
+        {
+          "rank": 6,
+          "feature": "LOC399959",
+          "attribution_score": 9.341586701339111e-05
+        },
+        {
+          "rank": 7,
+          "feature": "PPAPDC1A",
+          "attribution_score": 9.326854342361912e-05
+        },
+        {
+          "rank": 8,
+          "feature": "FCRLA",
+          "attribution_score": 8.798953058430925e-05
+        },
+        {
+          "rank": 9,
+          "feature": "SLC27A6",
+          "attribution_score": 8.527406316716224e-05
+        },
+        {
+          "rank": 10,
+          "feature": "TG",
+          "attribution_score": 8.490523032378405e-05
+        }
+      ],
+      "miRNA": [
+        {
+          "rank": 1,
+          "feature": "hsa-let-7i-3p",
+          "attribution_score": 0.0021859125699847937
+        },
+        {
+          "rank": 2,
+          "feature": "hsa-miR-135a-5p",
+          "attribution_score": 0.001976251835003495
+        },
+        {
+          "rank": 3,
+          "feature": "hsa-miR-1251-5p",
+          "attribution_score": 0.0017231600359082222
+        },
+        {
+          "rank": 4,
+          "feature": "hsa-miR-615-3p",
+          "attribution_score": 0.0016959414351731539
+        },
+        {
+          "rank": 5,
+          "feature": "hsa-miR-146b-3p",
+          "attribution_score": 0.0013693725923076272
+        },
+        {
+          "rank": 6,
+          "feature": "hsa-miR-486-5p",
+          "attribution_score": 0.0012616708409041166
+        },
+        {
+          "rank": 7,
+          "feature": "hsa-miR-181a-2-3p",
+          "attribution_score": 0.0012159872567281127
+        },
+        {
+          "rank": 8,
+          "feature": "hsa-miR-539-5p",
+          "attribution_score": 0.001181038678623736
+        },
+        {
+          "rank": 9,
+          "feature": "hsa-miR-135b-5p",
+          "attribution_score": 0.0011808330891653895
+        },
+        {
+          "rank": 10,
+          "feature": "hsa-miR-551b-3p",
+          "attribution_score": 0.0011717170709744096
+        }
+      ],
+      "CNV": [
+        {
+          "rank": 1,
+          "feature": "CHRM3",
+          "attribution_score": 0.0001443887740606442
+        },
+        {
+          "rank": 2,
+          "feature": "COX20",
+          "attribution_score": 0.00012510738451965153
+        },
+        {
+          "rank": 3,
+          "feature": "PAPD7",
+          "attribution_score": 0.00012465359759517014
+        },
+        {
+          "rank": 4,
+          "feature": "LYST",
+          "attribution_score": 0.0001242819707840681
+        },
+        {
+          "rank": 5,
+          "feature": "CMBL",
+          "attribution_score": 0.00012298904766794294
+        },
+        {
+          "rank": 6,
+          "feature": "MTRR",
+          "attribution_score": 0.00012289198639336973
+        },
+        {
+          "rank": 7,
+          "feature": "FAM173B",
+          "attribution_score": 0.00012207899999339134
+        },
+        {
+          "rank": 8,
+          "feature": "TARBP1",
+          "attribution_score": 0.00012040617730235681
+        },
+        {
+          "rank": 9,
+          "feature": "FAM105B",
+          "attribution_score": 0.00012038684508297592
+        },
+        {
+          "rank": 10,
+          "feature": "ANKH",
+          "attribution_score": 0.00011745777010219172
+        }
+      ],
+      "Methy": [
+        {
+          "rank": 1,
+          "feature": "cg01303372",
+          "attribution_score": 0.0004382267943583429
+        },
+        {
+          "rank": 2,
+          "feature": "cg09901035",
+          "attribution_score": 0.0003698795917443931
+        },
+        {
+          "rank": 3,
+          "feature": "cg22986569",
+          "attribution_score": 0.00036928392364643514
+        },
+        {
+          "rank": 4,
+          "feature": "cg25654695",
+          "attribution_score": 0.0003658317727968097
+        },
+        {
+          "rank": 5,
+          "feature": "cg20418529",
+          "attribution_score": 0.0003646843833848834
+        },
+        {
+          "rank": 6,
+          "feature": "cg01824466",
+          "attribution_score": 0.0003612941945903003
+        },
+        {
+          "rank": 7,
+          "feature": "cg16389901",
+          "attribution_score": 0.00035911420127376914
+        },
+        {
+          "rank": 8,
+          "feature": "cg03178838",
+          "attribution_score": 0.00035833052243106067
+        },
+        {
+          "rank": 9,
+          "feature": "cg04873098",
+          "attribution_score": 0.00035560192191042006
+        },
+        {
+          "rank": 10,
+          "feature": "cg19991916",
+          "attribution_score": 0.00035304066841490567
+        }
+      ]
+    }
+  }
+}

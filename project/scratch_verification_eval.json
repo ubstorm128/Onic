@@ -1,0 +1,273 @@
+{
+  "C0": {
+    "description": "Complete (reference)",
+    "error_count": 2,
+    "error_indices": [
+      58,
+      244
+    ],
+    "accuracy": 0.9941176470588236,
+    "macro_f1": 0.9944927536231885,
+    "balanced_accuracy": 0.993421052631579
+  },
+  "C1": {
+    "description": "mRNA missing",
+    "error_count": 2,
+    "error_indices": [
+      58,
+      244
+    ],
+    "accuracy": 0.9941176470588236,
+    "macro_f1": 0.9944927536231885,
+    "balanced_accuracy": 0.993421052631579
+  },
+  "C2": {
+    "description": "miRNA missing",
+    "error_count": 2,
+    "error_indices": [
+      58,
+      244
+    ],
+    "accuracy": 0.9941176470588236,
+    "macro_f1": 0.9944927536231885,
+    "balanced_accuracy": 0.993421052631579
+  },
+  "C3": {
+    "description": "CNV missing",
+    "error_count": 2,
+    "error_indices": [
+      58,
+      244
+    ],
+    "accuracy": 0.9941176470588236,
+    "macro_f1": 0.9944927536231885,
+    "balanced_accuracy": 0.993421052631579
+  },
+  "C4": {
+    "description": "Methy missing",
+    "error_count": 2,
+    "error_indices": [
+      58,
+      244
+    ],
+    "accuracy": 0.9941176470588236,
+    "macro_f1": 0.9944927536231885,
+    "balanced_accuracy": 0.993421052631579
+  },
+  "C5": {
+    "description": "mRNA+miRNA missing",
+    "error_count": 2,
+    "error_indices": [
+      58,
+      244
+    ],
+    "accuracy": 0.9941176470588236,
+    "macro_f1": 0.9944927536231885,
+    "balanced_accuracy": 0.993421052631579
+  },
+  "C6": {
+    "description": "mRNA+CNV missing",
+    "error_count": 2,
+    "error_indices": [
+      58,
+      244
+    ],
+    "accuracy": 0.9941176470588236,
+    "macro_f1": 0.9944927536231885,
+    "balanced_accuracy": 0.993421052631579
+  },
+  "C7": {
+    "description": "mRNA+Methy missing",
+    "error_count": 3,
+    "error_indices": [
+      58,
+      222,
+      244
+    ],
+    "accuracy": 0.9911764705882353,
+    "macro_f1": 0.9917580034124758,
+    "balanced_accuracy": 0.9912280701754386
+  },
+  "C8": {
+    "description": "miRNA+CNV missing",
+    "error_count": 2,
+    "error_indices": [
+      58,
+      244
+    ],
+    "accuracy": 0.9941176470588236,
+    "macro_f1": 0.9944927536231885,
+    "balanced_accuracy": 0.993421052631579
+  },
+  "C9": {
+    "description": "miRNA+Methy missing",
+    "error_count": 2,
+    "error_indices": [
+      58,
+      244
+    ],
+    "accuracy": 0.9941176470588236,
+    "macro_f1": 0.9944927536231885,
+    "balanced_accuracy": 0.993421052631579
+  },
+  "C10": {
+    "description": "CNV+Methy missing",
+    "error_count": 1,
+    "error_indices": [
+      244
+    ],
+    "accuracy": 0.9970588235294118,
+    "macro_f1": 0.9972526678041586,
+    "balanced_accuracy": 0.9967105263157895
+  },
+  "C11": {
+    "description": "Only Methy present",
+    "error_count": 2,
+    "error_indices": [
+      58,
+      244
+    ],
+    "accuracy": 0.9941176470588236,
+    "macro_f1": 0.9944927536231885,
+    "balanced_accuracy": 0.993421052631579
+  },
+  "C12": {
+    "description": "Only CNV present",
+    "error_count": 107,
+    "error_indices": [
+      0,
+      3,
+      5,
+      12,
+      14,
+      16,
+      17,
+      19,
+      21,
+      24,
+      27,
+      30,
+      33,
+      36,
+      38,
+      39,
+      41,
+      42,
+      48,
+      50,
+      52,
+      54,
+      56,
+      57,
+      58,
+      61,
+      62,
+      63,
+      66,
+      71,
+      74,
+      86,
+      88,
+      89,
+      91,
+      92,
+      93,
+      94,
+      99,
+      100,
+      116,
+      118,
+      122,
+      125,
+      127,
+      129,
+      131,
+      134,
+      140,
+      141,
+      150,
+      159,
+      161,
+      171,
+      177,
+      179,
+      182,
+      183,
+      184,
+      189,
+      199,
+      201,
+      203,
+      204,
+      207,
+      214,
+      216,
+      217,
+      218,
+      222,
+      224,
+      228,
+      230,
+      231,
+      232,
+      235,
+      236,
+      244,
+      249,
+      262,
+      264,
+      268,
+      271,
+      276,
+      278,
+      280,
+      282,
+      284,
+      287,
+      291,
+      292,
+      294,
+      296,
+      298,
+      299,
+      303,
+      306,
+      307,
+      309,
+      317,
+      318,
+      319,
+      330,
+      331,
+      333,
+      336,
+      338
+    ],
+    "accuracy": 0.6852941176470588,
+    "macro_f1": 0.6809955722333694,
+    "balanced_accuracy": 0.697101706970128
+  },
+  "C13": {
+    "description": "Only miRNA present",
+    "error_count": 3,
+    "error_indices": [
+      58,
+      187,
+      244
+    ],
+    "accuracy": 0.9911764705882353,
+    "macro_f1": 0.9911622777776478,
+    "balanced_accuracy": 0.9912280701754386
+  },
+  "C14": {
+    "description": "Only mRNA present",
+    "error_count": 2,
+    "error_indices": [
+      58,
+      244
+    ],
+    "accuracy": 0.9941176470588236,
+    "macro_f1": 0.9944927536231885,
+    "balanced_accuracy": 0.993421052631579
+  }
+}

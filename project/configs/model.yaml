@@ -1,0 +1,59 @@
+# Model Architecture Configurations
+# =================================
+
+# Shared dimensions
+latent_dim: 128
+num_classes: 4
+
+# Single Modality MLP Baselines
+mlp_baseline:
+  hidden_dims: [256, 128]
+  dropout: 0.3
+  use_batchnorm: true
+  activation: "relu"
+
+# Early Fusion (Concatenation) Baseline
+early_fusion:
+  hidden_dims: [512, 256, 128]
+  dropout: 0.3
+  use_batchnorm: true
+  activation: "relu"
+
+# Multimodal Cross-Attention Fusion
+attention_fusion:
+  # Encoders per modality
+  encoder:
+    hidden_dim: 256
+    output_dim: 128
+    dropout: 0.3
+    use_batchnorm: true
+    activation: "relu"
+  
+  # Fusion Transformer / Attention
+  fusion:
+    num_heads: 4
+    num_layers: 1
+    dim_feedforward: 256
+    dropout: 0.1
+    pooling: "mean"  # "mean", "cls", or "attention_weighted"
+    use_modality_type_embeddings: true
+  
+  # Missing Modality Handling
+  missing_modality:
+    default_strategy: "learned_token"  # "learned_token", "zero_embedding", "mask_only"
+    apply_attention_mask: true
+  
+  # Classifier Head
+  classifier:
+    hidden_dims: [64]
+    dropout: 0.3
+    activation: "relu"
+
+# Tabular GBDT Baseline (LightGBM)
+lightgbm:
+  n_estimators: 200
+  learning_rate: 0.05
+  num_leaves: 31
+  random_state: 42
+  objective: "multiclass"
+  num_class: 4

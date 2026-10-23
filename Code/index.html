@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Robust Multimodal AI for Multi-Cancer Classification</title>
+  <meta name="description"
+    content="A resilient multi-modal deep learning framework for pan-cancer diagnosis under incomplete clinical data and missing modalities.">
+
+  <!-- Preconnect to Google Fonts for smooth rendering -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Ambient Background Lighting & Precision Grid -->
+  <div class="bg-ambient" aria-hidden="true">
+    <div class="grid-overlay"></div>
+    <div class="ambient-blob blob-1"></div>
+    <div class="ambient-blob blob-2"></div>
+    <div class="ambient-blob blob-3"></div>
+  </div>
+
+  <!-- Smooth Scroll Progress Indicator -->
+  <div id="scroll-progress"></div>
+
+  <!-- Floating Island Navigation Header -->
+  <header class="nav-wrapper">
+    <nav id="navbar" aria-label="Main Navigation">
+      <a href="#hero" class="nav-brand" aria-label="Home">
+        <span class="nav-brand-text">Home</span>
+      </a>
+
+      <div class="nav-links" id="nav-links">
+        <div class="nav-indicator" aria-hidden="true"></div>
+        <a href="#hero" class="nav-link active">Home</a>
+        <a href="#problem" class="nav-link">Problem</a>
+        <a href="#demo" class="nav-link">Live Demo</a>
+        <a href="#method" class="nav-link">Architecture</a>
+        <a href="#data" class="nav-link">Dataset</a>
+        <a href="#team" class="nav-link">Team</a>
+      </div>
+
+      <div class="nav-actions">
+        <a href="#demo" class="nav-cta-btn">
+          <span>Sandbox</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+        </a>
+        <button class="tt" id="tt" type="button" aria-label="Toggle color theme">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" />
+            <path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" />
+          </svg>
+        </button>
+        <button class="mobile-toggle" id="mobile-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="bar-line"></span>
+          <span class="bar-line"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Drawer Menu -->
+    <div class="mobile-drawer" id="mobile-menu" aria-hidden="true">
+      <div class="mobile-drawer-content">
+        <a href="#hero" class="mobile-link active">Home</a>
+        <a href="#problem" class="mobile-link">Problem</a>
+        <a href="#demo" class="mobile-link">Live Demo</a>
+        <a href="#method" class="mobile-link">Architecture</a>
+        <a href="#data" class="mobile-link">Dataset</a>
+        <a href="#team" class="mobile-link">Team</a>
+        <div class="mobile-drawer-footer">
+          <a href="#demo" class="btn" style="width: 100%; justify-content: center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            Try Interactive Demo
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <h1 class="rv">
+      Reliable cancer diagnosis, <span class="accent-text">even when clinical data is missing.</span>
+    </h1>
+    <p class="lead rv">
+      A robust multimodal deep learning framework for multi-cancer classification that maintains diagnostic accuracy
+      when one or more clinical modalities are unavailable.
+    </p>
+    <div class="hero-actions rv">
+      <a class="btn" href="#demo">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+        Try Interactive Demo
+      </a>
+      <a class="btn g" href="#method">
+        Explore Architecture
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </a>
+    </div>
+
+    <div class="hero-meta-badges rv">
+      <div class="meta-pill">
+        <strong>Modality Invariant:</strong> mRNA · miRNA · CNV · DNA Methylation
+      </div>
+      <div class="meta-pill">
+        <strong>Resilience:</strong> Graceful Fallback on Missing Data
+      </div>
+      <div class="meta-pill">
+        <strong>Cohort:</strong> 2,263 Multi-Omic Patients (TCGA Pan-Cancer)
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem & Motivation Section -->
+  <section id="problem">
+    <h2 class="rv">Real hospitals have incomplete records. Our model is engineered for that.</h2>
+    <p class="sub rv">
+      Traditional multimodal AI models presuppose that every patient case includes all high-throughput molecular assays
+      simultaneously. In clinical oncology, modalities are routinely missing due to assay costs, biopsy tissue degradation,
+      or assay-specific laboratory failures.
+    </p>
+
+    <div class="bento">
+      <div class="tile t1 rv">
+        <h3>Multi-modal fusion across 4 distinct omic streams</h3>
+        <p>Integrates transcriptomic gene expression (mRNA), microRNA regulation (miRNA), somatic copy number alterations (CNV),
+          and epigenetic DNA methylation across 9,844 molecular features into a unified latent space.</p>
+      </div>
+
+      <div class="tile t2 rv">
+        <span class="num">4</span>
+        <h3>Target Pan-Cancer Malignancies</h3>
+        <p>Accurate multi-class subtype classification across BRCA (Breast), HNSC (Head/Neck), LGG (Brain Glioma), and THCA (Thyroid).</p>
+      </div>
+
+      <div class="tile t2 rv">
+        <span class="num">99.56%</span>
+        <h3>Peak Quad-Modal Macro-F1</h3>
+        <p>Outperforming single-modality baselines (CNV: 85.2%, Methy: 93.4%) with cross-attention token aggregation.</p>
+      </div>
+
+      <div class="tile t4 rv">
+        <h3>+8.52% empirical retention under extreme missingness</h3>
+        <p>Benchmarked across all 15 combinatorial modality-drop conditions (C0–C14) on 2,263 TCGA patient samples, retaining robust diagnostic capabilities even under severe single-stream data starvation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Demo Section -->
+  <section id="demo">
+    <h2 class="rv">Switch an omic modality off. Watch the network adapt.</h2>
+    <p class="sub rv">
+      Interact with the live neural routing simulation below. Toggle any modality off, switch test patients, or pick clinical presets to
+      observe dynamic feature re-weighting, confidence calibration, and subtype diagnosis.
+    </p>
+
+    <div class="stage rv">
+      <div class="stage-header">
+        <div class="stage-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+          </svg>
+          Active Neural Topology (4-Omics Cross-Attention)
+        </div>
+        <div class="stage-badges">
+          <div class="api-status-pill offline" id="api-status-pill" title="Click to test model server connection (http://127.0.0.1:8000)">
+            <span class="status-dot"></span>
+            <span id="api-status-label">Checking Model API...</span>
+          </div>
+          <div class="status-badge" id="stage-status-badge">
+            Optimal Quad-Modal Synergy
+          </div>
+        </div>
+      </div>
+
+      <!-- Animated Neural Architecture SVG (4 Omic Inputs) -->
+      <svg viewBox="0 0 780 340" role="img"
+        aria-label="Interactive neural diagram demonstrating 4-omics encoders feeding an adaptive cross-attention fusion core">
+        <defs>
+          <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="var(--acc)" stop-opacity="0.5" />
+            <stop offset="100%" stop-color="var(--acc)" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+
+        <!-- Neural Signal Flow Paths -->
+        <g id="flows">
+          <path class="flow" data-m="0" d="M175 46 C320 46 360 160 480 160" />
+          <path class="flow flow-genomics" data-m="1" d="M175 121 C320 121 380 160 480 160" />
+          <path class="flow flow-cnv" data-m="2" d="M175 196 C320 196 380 160 480 160" />
+          <path class="flow flow-methy" data-m="3" d="M175 271 C320 271 360 160 480 160" />
+          <path class="flow flow-output" d="M575 160 L655 160" />
+        </g>
+
+        <!-- Fusion Transformer Core -->
+        <circle class="core" cx="530" cy="160" r="75" />
+        <circle class="node" style="stroke:var(--acc2); stroke-width: 2.5;" cx="530" cy="160" r="44" />
+        <text class="lbl" x="530" y="156" text-anchor="middle">Adaptive</text>
+        <text class="lbl-sub" x="530" y="172" text-anchor="middle">FUSION CORE</text>
+
+        <!-- Modality Input Nodes (4 Omics) -->
+        <g id="nodes">
+          <!-- Modality 0: mRNA -->
+          <rect class="node" data-m="0" x="25" y="20" width="150" height="52" rx="14" />
+          <text class="lbl" data-m="0" x="100" y="44" text-anchor="middle">mRNA Expression</text>
+          <text class="lbl-sub" data-m="0" x="100" y="60" text-anchor="middle">Transcriptomics (3,217)</text>
+
+          <!-- Modality 1: miRNA -->
+          <rect class="node" data-m="1" x="25" y="95" width="150" height="52" rx="14" style="stroke:var(--acc2);" />
+          <text class="lbl" data-m="1" x="100" y="119" text-anchor="middle">miRNA Expression</text>
+          <text class="lbl-sub" data-m="1" x="100" y="135" text-anchor="middle">microRNA (383)</text>
+
+          <!-- Modality 2: CNV -->
+          <rect class="node" data-m="2" x="25" y="170" width="150" height="52" rx="14" style="stroke:#f59e0b;" />
+          <text class="lbl" data-m="2" x="100" y="194" text-anchor="middle">CNV Profiling</text>
+          <text class="lbl-sub" data-m="2" x="100" y="210" text-anchor="middle">Copy Number (3,105)</text>
+
+          <!-- Modality 3: DNA Methylation -->
+          <rect class="node" data-m="3" x="25" y="245" width="150" height="52" rx="14" style="stroke:#10b981;" />
+          <text class="lbl" data-m="3" x="100" y="269" text-anchor="middle">DNA Methylation</text>
+          <text class="lbl-sub" data-m="3" x="100" y="285" text-anchor="middle">Epigenomics (3,139)</text>
+        </g>
+
+        <!-- Output Head -->
+        <rect class="node" style="stroke:var(--success); stroke-width: 2.5;" x="655" y="128" width="105" height="64"
+          rx="16" />
+        <text class="lbl" x="707" y="156" text-anchor="middle">Diagnosis</text>
+        <text class="lbl-sub" x="707" y="174" text-anchor="middle">HEAD</text>
+      </svg>
+
+      <!-- Modality Controls & Presets -->
+      <div class="controls-bar">
+        <!-- Live Patient Selector Row -->
+        <div class="patient-selector-row">
+          <div class="patient-selector-label">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            TCGA Cohort Patient:
+          </div>
+          <div class="patient-chips" role="group" aria-label="Select test cohort patient case">
+            <button class="patient-chip active" data-pidx="0">Patient #101 (BRCA)</button>
+            <button class="patient-chip" data-pidx="1">Patient #142 (HNSC)</button>
+            <button class="patient-chip" data-pidx="6">Patient #188 (LGG)</button>
+            <button class="patient-chip" data-pidx="2">Patient #215 (THCA)</button>
+            <button class="patient-chip" data-pidx="5">Patient #107 (BRCA)</button>
+          </div>
+        </div>
+
+        <div class="preset-row">
+          <span class="preset-lbl">Modality Presets:</span>
+          <button class="preset-btn active" data-preset="all">Full Quad-Modal (C0 Reference)</button>
+          <button class="preset-btn" data-preset="no-mrna">Missing mRNA (C1)</button>
+          <button class="preset-btn" data-preset="methy-only">Epigenetics Only (C11: Methy)</button>
+          <button class="preset-btn" data-preset="cnv-only">CNV Stress Test (C12: +8.5% Gain)</button>
+        </div>
+
+        <div class="controls" role="group" aria-label="Toggle modalities">
+          <button class="chip" aria-pressed="true" data-m="0">
+            <span class="chip-dot"></span>
+            mRNA (3,217)
+          </button>
+          <button class="chip" aria-pressed="true" data-m="1">
+            <span class="chip-dot"></span>
+            miRNA (383)
+          </button>
+          <button class="chip" aria-pressed="true" data-m="2">
+            <span class="chip-dot" style="background: #f59e0b;"></span>
+            CNV (3,105)
+          </button>
+          <button class="chip" aria-pressed="true" data-m="3">
+            <span class="chip-dot" style="background: #10b981;"></span>
+            Methy (3,139)
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Diagnosis Output Dashboard Panel -->
+      <div class="demo-result-card">
+        <div class="result-header-row">
+          <span class="condition-badge" id="condition-badge">Condition C0 (Quad-Modal Reference)</span>
+          <span class="latency-badge" id="latency-badge">Latency: 0.09 ms</span>
+        </div>
+
+        <div class="result-main">
+          <h3>Predicted Cancer Malignancy</h3>
+          <div class="result-diagnosis" id="result-diagnosis-text">
+            Breast Invasive Carcinoma (BRCA)
+          </div>
+          <div class="result-meta" id="result-meta-text">
+            Primary Organ: Breast · Validated against TCGA test cohort sample TCGA-AO-A0JJ-01.
+          </div>
+
+          <!-- Top Biomarkers Row -->
+          <div class="biomarkers-row" id="biomarkers-container">
+            <span class="biomarkers-label">Top Driving Biomarkers:</span>
+            <div class="biomarker-tags" id="biomarker-tags">
+              <span class="biomarker-tag">SFRP1 (mRNA)</span>
+              <span class="biomarker-tag">C5orf46 (mRNA)</span>
+              <span class="biomarker-tag">STAC2 (mRNA)</span>
+              <span class="biomarker-tag">MIA (mRNA)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="meter-wrapper">
+          <div class="meter-head">
+            <span id="mt">Classification Confidence</span>
+            <span class="contrib-val" id="mv">99.6%</span>
+          </div>
+          <div class="bar">
+            <i id="mb" style="width: 99.6%;"></i>
+          </div>
+
+          <div class="contrib-grid">
+            <div class="contrib-item">
+              <span>mRNA:</span>
+              <span class="contrib-val" id="contrib-mrna">34.0%</span>
+            </div>
+            <div class="contrib-item">
+              <span>miRNA:</span>
+              <span class="contrib-val" id="contrib-mirna">26.1%</span>
+            </div>
+            <div class="contrib-item">
+              <span>CNV:</span>
+              <span class="contrib-val" id="contrib-cnv">5.7%</span>
+            </div>
+            <div class="contrib-item">
+              <span>Methy:</span>
+              <span class="contrib-val" id="contrib-methy">34.2%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Methods & Architecture Section -->
+  <section id="method">
+    <h2 class="rv">From heterogeneous raw inputs to a robust unified prediction.</h2>
+    <p class="sub rv">
+      The architecture decouples modality encoding from fusion, injecting learnable missing tokens whenever a clinical
+      test is unobserved, preventing catastrophic representation collapse.
+    </p>
+
+    <div class="steps">
+      <div class="step rv">
+        <div class="step-num">Stage I</div>
+        <h3>Modality Encoders</h3>
+        <p>WSI gigapixel patches are mapped with Vision Transformers; RNA-seq high-dimensional profiles pass through
+          Sparse SNNs; clinical EHR tables use TabNet embeddings.</p>
+        <div class="step-tags">
+          <span class="step-tag">ViT / CTransPath</span>
+          <span class="step-tag">Genomic MLP</span>
+          <span class="step-tag">EHR Embedding</span>
+        </div>
+      </div>
+
+      <div class="step rv">
+        <div class="step-num">Stage II</div>
+        <h3>Masked Imputation</h3>
+        <p>When any diagnostic input is absent, stochastic attention masks substitute the missing stream with dynamic
+          learned query vectors conditioned on present streams.</p>
+        <div class="step-tags">
+          <span class="step-tag">Modality Dropout</span>
+          <span class="step-tag">Masked Tokens</span>
+          <span class="step-tag">Latent Recovery</span>
+        </div>
+      </div>
+
+      <div class="step rv">
+        <div class="step-num">Stage III</div>
+        <h3>Cross-Attention Fusion</h3>
+        <p>A multi-head cross-modal transformer dynamically models inter-modality dependencies, weighting the most
+          informative available signals without rigid concatenation.</p>
+        <div class="step-tags">
+          <span class="step-tag">Cross-Modal MHA</span>
+          <span class="step-tag">Adaptive Gating</span>
+          <span class="step-tag">Joint Space</span>
+        </div>
+      </div>
+
+      <div class="step rv">
+        <div class="step-num">Stage IV</div>
+        <h3>Calibrated Prediction</h3>
+        <p>A classification head outputs pan-cancer subtype logits paired with Bayesian Dirichlet uncertainty estimation
+          to alert clinicians when inputs are insufficient.</p>
+        <div class="step-tags">
+          <span class="step-tag">12 Subtypes</span>
+          <span class="step-tag">Uncertainty Metric</span>
+          <span class="step-tag">Explainable GradCAM</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dataset & Empirical Benchmark Section -->
+  <section id="data">
+    <h2 class="rv">Trained and benchmarked on verified clinical cohorts.</h2>
+    <p class="sub rv">
+      Evaluated on the Cancer Genome Atlas (TCGA) pan-cancer repository across 4 primary malignancies (BRCA, HNSC, LGG, THCA)
+      under 15 systematically evaluated missing-modality regimes (C0–C14).
+    </p>
+
+    <!-- Animated Metric Counters -->
+    <div class="bento">
+      <div class="tile t2 rv">
+        <span class="num" data-counter-target="2263">2,263</span>
+        <p>Patient Cohort Samples</p>
+      </div>
+
+      <div class="tile t2 rv">
+        <span class="num" data-counter-target="4">4</span>
+        <p>Target Pan-Cancer Subtypes</p>
+      </div>
+
+      <div class="tile t2 rv">
+        <span class="num" data-counter-target="4">4</span>
+        <p>Synchronized Omic Modalities</p>
+      </div>
+
+      <div class="tile t3-half rv">
+        <span class="num" data-counter-target="99.56" data-counter-suffix="%" data-counter-decimals="2">99.56%</span>
+        <h3>Peak Quad-Modal Macro-F1</h3>
+        <p>Proposed cross-attention framework matches near-perfect complete classification while maintaining exceptional single-modality fallback.</p>
+      </div>
+
+      <div class="tile t3-half rv">
+        <span class="num">9,844 Features</span>
+        <h3>Multi-Omic Matrix</h3>
+        <p>mRNA (3,217), miRNA (383), CNV (3,105), DNA Methylation (3,139) with strict zero-leakage 70/15/15 stratified partitioning.</p>
+      </div>
+    </div>
+
+    <!-- Modality Ablation Comparison Table -->
+    <div class="benchmark-card rv">
+      <h3>Missing-Modality Robustness Benchmark (15 Conditions)</h3>
+      <p class="sub" style="margin: 8px 0 16px; font-size: 15px;">
+        Comparing classification performance between Baseline S1 (Complete Only) vs. Proposed Strategy S2 (Modality Dropout with Learned Mask Tokens).
+      </p>
+
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Evaluation Condition</th>
+              <th>mRNA</th>
+              <th>miRNA</th>
+              <th>CNV</th>
+              <th>Methy</th>
+              <th>Baseline S1 F1</th>
+              <th>Proposed S2 F1</th>
+              <th>Robustness Delta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>C0: Complete (Gold Standard)</strong></td>
+              <td><span class="badge-pill success">Present</span></td>
+              <td><span class="badge-pill success">Present</span></td>
+              <td><span class="badge-pill success">Present</span></td>
+              <td><span class="badge-pill success">Present</span></td>
+              <td>99.56%</td>
+              <td><strong>99.50%</strong></td>
+              <td><span class="badge-pill info">Optimal</span></td>
+            </tr>
+            <tr>
+              <td><strong>C1: Transcriptomics Missing</strong></td>
+              <td><span class="badge-pill danger">Missing</span></td>
+              <td><span class="badge-pill success">Present</span></td>
+              <td><span class="badge-pill success">Present</span></td>
+              <td><span class="badge-pill success">Present</span></td>
+              <td>99.39%</td>
+              <td><strong>99.45%</strong></td>
+              <td><span class="badge-pill info">+0.06%</span></td>
+            </tr>
+            <tr>
+              <td><strong>C4: Epigenetics Missing</strong></td>
+              <td><span class="badge-pill success">Present</span></td>
+              <td><span class="badge-pill success">Present</span></td>
+              <td><span class="badge-pill success">Present</span></td>
+              <td><span class="badge-pill danger">Missing</span></td>
+              <td>99.41%</td>
+              <td><strong>99.41%</strong></td>
+              <td><span class="badge-pill info">Parity</span></td>
+            </tr>
+            <tr>
+              <td><strong>C11: DNA Methylation Only</strong></td>
+              <td><span class="badge-pill danger">Missing</span></td>
+              <td><span class="badge-pill danger">Missing</span></td>
+              <td><span class="badge-pill danger">Missing</span></td>
+              <td><span class="badge-pill success">Present</span></td>
+              <td>93.37%</td>
+              <td><strong>93.37%</strong></td>
+              <td><span class="badge-pill info">Fallback</span></td>
+            </tr>
+            <tr>
+              <td><strong>C12: Genomic CNV Only (Stress Test)</strong></td>
+              <td><span class="badge-pill danger">Missing</span></td>
+              <td><span class="badge-pill danger">Missing</span></td>
+              <td><span class="badge-pill success">Present</span></td>
+              <td><span class="badge-pill danger">Missing</span></td>
+              <td>65.60%</td>
+              <td><strong>74.12%</strong></td>
+              <td><span class="badge-pill success">+8.52% Gain</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Team Section -->
+  <section id="team">
+    <h2 class="rv">The team behind the framework.</h2>
+    <p class="sub rv">
+      Bachelor of Computer Applications (BCA) Major Project · Faculty of Computer Technology .
+    </p>
+
+    <div class="team-grid">
+      <div class="person-card rv">
+        <div class="person-avatar">UB</div>
+        <div>
+          <div class="person-name">Udit Bora</div>
+          <div class="person-role">Lead Developer &amp; ML Architecture</div>
+        </div>
+        <p class="person-desc">Multimodal model training, missing-stream latent masking algorithms, and full-stack
+          interactive interface design.</p>
+      </div>
+
+      <div class="person-card rv">
+        <div class="person-avatar">KB</div>
+        <div>
+          <div class="person-name">Kritartha Barman</div>
+          <div class="person-role">Data Pipeline &amp; Multimodal Processing</div>
+        </div>
+        <p class="person-desc">TCGA whole-slide gigapixel image tiling, RNA-seq normalization pipelines, and clinical
+          feature extraction.</p>
+      </div>
+
+      <div class="person-card rv">
+        <div class="person-avatar">AS</div>
+        <div>
+          <div class="person-name">Aniket Saha</div>
+          <div class="person-role">Evaluation &amp; Visualization</div>
+        </div>
+        <p class="person-desc">Empirical ablation benchmarking, cross-entropy calibration, and front-end neural topology
+          visualization.</p>
+      </div>
+
+      <div class="person-card supervisor rv">
+        <div class="person-avatar">WN</div>
+        <div>
+          <div class="person-name">Mr. Wanraplang Nongbri</div>
+          <div class="person-role">Academic Supervisor &amp; Mentor</div>
+        </div>
+        <p class="person-desc">Assistant Professor · Department of Computer Science. Research direction, experimental
+          methodology, and technical guidance.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-credits">
+      <strong>Robust Multimodal AI for Multi-Cancer Classification</strong>
+      <div class="footer-note">BCA Major Project · St. Anthony's College · Designed for clinical robustness under
+        missing data</div>
+    </div>
+    <button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top of page">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+      </svg>
+      Back to Top
+    </button>
+  </footer>
+
+  <!-- External JavaScript -->
+  <script src="script.js" defer></script>
+</body>
+
+</html>

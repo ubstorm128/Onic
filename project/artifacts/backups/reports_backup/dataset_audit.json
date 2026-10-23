@@ -1,0 +1,366 @@
+{
+  "timestamp": "2026-10-15T21:39:59.871748",
+  "data_directory": "D:\\Personal Files\\BCA\\5TH SEM\\Major_Project_Research\\Dataset_2\\MLOmics\\Main_Dataset\\Classification_datasets\\Pan-cancer\\Original",
+  "report_directory": "D:\\Personal Files\\BCA\\5TH SEM\\Major_Project_Research\\Dataset_Report",
+  "checks_passed": [
+    "mRNA file exists: Pan-cancer_mRNA.csv",
+    "miRNA file exists: Pan-cancer_miRNA.csv",
+    "CNV file exists: Pan-cancer_CNV.csv",
+    "Methy file exists: Pan-cancer_Methy.csv",
+    "Label file exists: Pan-cancer_label_num.csv",
+    "All modalities have identical sample IDs in identical order",
+    "Label count matches sample count",
+    "All 4 target label\u2192TCGA project mappings verified",
+    "All target class counts match expectations",
+    "mRNA: feature IDs unique",
+    "mRNA: no non-numeric cells (sampled)",
+    "mRNA: no non-finite cells (sampled)",
+    "mRNA: consistent row widths",
+    "miRNA: feature IDs unique",
+    "miRNA: no non-numeric cells (sampled)",
+    "miRNA: no non-finite cells (sampled)",
+    "miRNA: consistent row widths",
+    "CNV: feature IDs unique",
+    "CNV: no non-numeric cells (sampled)",
+    "CNV: no non-finite cells (sampled)",
+    "CNV: consistent row widths",
+    "Methy: feature IDs unique",
+    "Methy: no non-numeric cells (sampled)",
+    "Methy: no non-finite cells (sampled)",
+    "Methy: consistent row widths",
+    "No multi-sample patients detected"
+  ],
+  "checks_failed": [],
+  "checks_incomplete": [],
+  "warnings": [
+    "Feature column naming inconsistency: {'mRNA': 'sample', 'miRNA': 'sample', 'CNV': 'Sample', 'Methy': 'sample'}"
+  ],
+  "label_file": {
+    "path": "D:\\Personal Files\\BCA\\5TH SEM\\Major_Project_Research\\Dataset_2\\MLOmics\\Main_Dataset\\Classification_datasets\\Pan-cancer\\Original\\Pan-cancer_label_num.csv",
+    "header": [
+      "Label"
+    ],
+    "data_rows": 8314,
+    "expected_header": [
+      "Label"
+    ],
+    "unique_labels": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "label_counts": {
+      "0": 76,
+      "1": 401,
+      "2": 757,
+      "3": 291,
+      "4": 36,
+      "5": 285,
+      "6": 47,
+      "7": 180,
+      "8": 506,
+      "9": 65,
+      "10": 306,
+      "11": 268,
+      "12": 163,
+      "13": 506,
+      "14": 357,
+      "15": 448,
+      "16": 356,
+      "17": 87,
+      "18": 9,
+      "19": 176,
+      "20": 161,
+      "21": 484,
+      "22": 91,
+      "23": 250,
+      "24": 351,
+      "25": 365,
+      "26": 133,
+      "27": 494,
+      "28": 119,
+      "29": 411,
+      "30": 55,
+      "31": 80
+    },
+    "total_samples": 8314
+  },
+  "modalities": {
+    "mRNA": {
+      "path": "D:\\Personal Files\\BCA\\5TH SEM\\Major_Project_Research\\Dataset_2\\MLOmics\\Main_Dataset\\Classification_datasets\\Pan-cancer\\Original\\Pan-cancer_mRNA.csv",
+      "feature_column_name": "sample",
+      "total_columns": 8315,
+      "sample_count": 8314,
+      "feature_count_rows": 3217,
+      "first_5_samples": [
+        "TCGA-IB-AAUW-01",
+        "TCGA-AJ-A3EJ-01",
+        "TCGA-EE-A29D-06",
+        "TCGA-55-7725-01",
+        "TCGA-AO-A0JJ-01"
+      ],
+      "last_3_samples": [
+        "TCGA-D5-5541-01",
+        "TCGA-DX-A3LU-01",
+        "TCGA-HS-A5NA-01"
+      ]
+    },
+    "miRNA": {
+      "path": "D:\\Personal Files\\BCA\\5TH SEM\\Major_Project_Research\\Dataset_2\\MLOmics\\Main_Dataset\\Classification_datasets\\Pan-cancer\\Original\\Pan-cancer_miRNA.csv",
+      "feature_column_name": "sample",
+      "total_columns": 8315,
+      "sample_count": 8314,
+      "feature_count_rows": 383,
+      "first_5_samples": [
+        "TCGA-IB-AAUW-01",
+        "TCGA-AJ-A3EJ-01",
+        "TCGA-EE-A29D-06",
+        "TCGA-55-7725-01",
+        "TCGA-AO-A0JJ-01"
+      ],
+      "last_3_samples": [
+        "TCGA-D5-5541-01",
+        "TCGA-DX-A3LU-01",
+        "TCGA-HS-A5NA-01"
+      ]
+    },
+    "CNV": {
+      "path": "D:\\Personal Files\\BCA\\5TH SEM\\Major_Project_Research\\Dataset_2\\MLOmics\\Main_Dataset\\Classification_datasets\\Pan-cancer\\Original\\Pan-cancer_CNV.csv",
+      "feature_column_name": "Sample",
+      "total_columns": 8315,
+      "sample_count": 8314,
+      "feature_count_rows": 3105,
+      "first_5_samples": [
+        "TCGA-IB-AAUW-01",
+        "TCGA-AJ-A3EJ-01",
+        "TCGA-EE-A29D-06",
+        "TCGA-55-7725-01",
+        "TCGA-AO-A0JJ-01"
+      ],
+      "last_3_samples": [
+        "TCGA-D5-5541-01",
+        "TCGA-DX-A3LU-01",
+        "TCGA-HS-A5NA-01"
+      ]
+    },
+    "Methy": {
+      "path": "D:\\Personal Files\\BCA\\5TH SEM\\Major_Project_Research\\Dataset_2\\MLOmics\\Main_Dataset\\Classification_datasets\\Pan-cancer\\Original\\Pan-cancer_Methy.csv",
+      "feature_column_name": "sample",
+      "total_columns": 8315,
+      "sample_count": 8314,
+      "feature_count_rows": 3139,
+      "first_5_samples": [
+        "TCGA-IB-AAUW-01",
+        "TCGA-AJ-A3EJ-01",
+        "TCGA-EE-A29D-06",
+        "TCGA-55-7725-01",
+        "TCGA-AO-A0JJ-01"
+      ],
+      "last_3_samples": [
+        "TCGA-D5-5541-01",
+        "TCGA-DX-A3LU-01",
+        "TCGA-HS-A5NA-01"
+      ]
+    }
+  },
+  "sample_alignment": {
+    "all_modalities_identical": true,
+    "label_count_matches_samples": true,
+    "details": {
+      "mRNA": {
+        "sample_count": 8314,
+        "identical_order_to_reference": true,
+        "same_sample_set_as_reference": true,
+        "has_duplicate_sample_ids": false,
+        "has_blank_sample_ids": false
+      },
+      "miRNA": {
+        "sample_count": 8314,
+        "identical_order_to_reference": true,
+        "same_sample_set_as_reference": true,
+        "has_duplicate_sample_ids": false,
+        "has_blank_sample_ids": false
+      },
+      "CNV": {
+        "sample_count": 8314,
+        "identical_order_to_reference": true,
+        "same_sample_set_as_reference": true,
+        "has_duplicate_sample_ids": false,
+        "has_blank_sample_ids": false
+      },
+      "Methy": {
+        "sample_count": 8314,
+        "identical_order_to_reference": true,
+        "same_sample_set_as_reference": true,
+        "has_duplicate_sample_ids": false,
+        "has_blank_sample_ids": false
+      }
+    },
+    "issues": []
+  },
+  "label_mappings": {
+    "verification_file_exists": true,
+    "crosstab_file_exists": true,
+    "mappings_verified": true,
+    "expected_mappings": {
+      "2": "TCGA-BRCA",
+      "8": "TCGA-HNSC",
+      "13": "TCGA-LGG",
+      "27": "TCGA-THCA"
+    },
+    "actual_mappings": {
+      "2": {
+        "TCGA-BRCA": 757
+      },
+      "8": {
+        "TCGA-HNSC": 506
+      },
+      "13": {
+        "TCGA-LGG": 506
+      },
+      "27": {
+        "TCGA-THCA": 494
+      }
+    },
+    "discrepancies": [],
+    "verification_columns": [
+      "sample_id",
+      "label",
+      "patient_id",
+      "tcga_project"
+    ],
+    "verification_sample_count": 8314,
+    "unmatched_samples": 0
+  },
+  "class_distribution": {
+    "target_classes": {
+      "BRCA": {
+        "label": 2,
+        "actual_count": 757,
+        "expected_count": 757,
+        "match": true
+      },
+      "HNSC": {
+        "label": 8,
+        "actual_count": 506,
+        "expected_count": 506,
+        "match": true
+      },
+      "LGG": {
+        "label": 13,
+        "actual_count": 506,
+        "expected_count": 506,
+        "match": true
+      },
+      "THCA": {
+        "label": 27,
+        "actual_count": 494,
+        "expected_count": 494,
+        "match": true
+      }
+    },
+    "total_target_samples": 2263,
+    "total_all_samples": 8314,
+    "non_target_samples": 6051,
+    "all_counts_match": true,
+    "discrepancies": []
+  },
+  "data_quality": {
+    "mRNA": {
+      "feature_ids_unique": true,
+      "duplicate_feature_ids": [],
+      "non_numeric_cells": 0,
+      "non_finite_cells": 0,
+      "inconsistent_row_widths": [],
+      "constant_features": 0,
+      "rows_checked": 3217,
+      "sample_non_numeric_values": [],
+      "constant_features_in_first_100_samples": 0,
+      "total_features_checked": 3217
+    },
+    "miRNA": {
+      "feature_ids_unique": true,
+      "duplicate_feature_ids": [],
+      "non_numeric_cells": 0,
+      "non_finite_cells": 0,
+      "inconsistent_row_widths": [],
+      "constant_features": 0,
+      "rows_checked": 383,
+      "sample_non_numeric_values": [],
+      "constant_features_in_first_100_samples": 0,
+      "total_features_checked": 383
+    },
+    "CNV": {
+      "feature_ids_unique": true,
+      "duplicate_feature_ids": [],
+      "non_numeric_cells": 0,
+      "non_finite_cells": 0,
+      "inconsistent_row_widths": [],
+      "constant_features": 0,
+      "rows_checked": 3105,
+      "sample_non_numeric_values": [],
+      "constant_features_in_first_100_samples": 0,
+      "total_features_checked": 3105
+    },
+    "Methy": {
+      "feature_ids_unique": true,
+      "duplicate_feature_ids": [],
+      "non_numeric_cells": 0,
+      "non_finite_cells": 0,
+      "inconsistent_row_widths": [],
+      "constant_features": 0,
+      "rows_checked": 3139,
+      "sample_non_numeric_values": [],
+      "constant_features_in_first_100_samples": 0,
+      "total_features_checked": 3139
+    }
+  },
+  "patient_id_analysis": {
+    "total_samples": 8314,
+    "unique_patients": 8314,
+    "multi_sample_patients": 0,
+    "sample_types": {
+      "01": 7800,
+      "06": 351,
+      "03": 163
+    },
+    "malformed_barcodes_count": 0,
+    "malformed_barcodes_examples": []
+  },
+  "summary": {
+    "passed": 26,
+    "failed": 0,
+    "incomplete": 0,
+    "warnings": 1,
+    "gate_passed": true
+  }
+}

@@ -1,0 +1,668 @@
+{
+  "experiment": "E1_Fusion_s2_dropout",
+  "description": "Multi-head cross-attention fusion architecture",
+  "modality_dims": {
+    "mRNA": 3217,
+    "miRNA": 383,
+    "CNV": 3105,
+    "Methy": 3139
+  },
+  "seeds": [
+    42,
+    123,
+    456,
+    789,
+    1024
+  ],
+  "val_summary": {
+    "macro_f1": "1.0000 \u00b1 0.0000",
+    "macro_f1_mean": 1.0,
+    "macro_f1_std": 0.0,
+    "balanced_accuracy": "1.0000 \u00b1 0.0000",
+    "balanced_accuracy_mean": 1.0,
+    "balanced_accuracy_std": 0.0,
+    "overall_accuracy": "1.0000 \u00b1 0.0000",
+    "overall_accuracy_mean": 1.0,
+    "overall_accuracy_std": 0.0,
+    "weighted_f1": "1.0000 \u00b1 0.0000",
+    "weighted_f1_mean": 1.0,
+    "weighted_f1_std": 0.0,
+    "mcc": "1.0000 \u00b1 0.0000",
+    "mcc_mean": 1.0,
+    "mcc_std": 0.0
+  },
+  "test_summary": {
+    "macro_f1": "0.9950 \u00b1 0.0011",
+    "macro_f1_mean": 0.9950447364593824,
+    "macro_f1_std": 0.0011039656723880408,
+    "balanced_accuracy": "0.9941 \u00b1 0.0013",
+    "balanced_accuracy_mean": 0.9940789473684211,
+    "balanced_accuracy_std": 0.0013157894736842036,
+    "overall_accuracy": "0.9947 \u00b1 0.0012",
+    "overall_accuracy_mean": 0.9947058823529412,
+    "overall_accuracy_std": 0.00117647058823529,
+    "weighted_f1": "0.9947 \u00b1 0.0012",
+    "weighted_f1_mean": 0.9946943067195282,
+    "weighted_f1_std": 0.001180599798817461,
+    "mcc": "0.9929 \u00b1 0.0016",
+    "mcc_mean": 0.9928822865945438,
+    "mcc_std": 0.001577309861328269
+  },
+  "seed_runs": [
+    {
+      "seed": 42,
+      "val": {
+        "macro_f1": 1.0,
+        "balanced_accuracy": 1.0,
+        "overall_accuracy": 1.0,
+        "micro_f1": 1.0,
+        "weighted_f1": 1.0,
+        "mcc": 1.0,
+        "per_class": {
+          "BRCA": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 113
+          },
+          "HNSC": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 76
+          },
+          "LGG": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 76
+          },
+          "THCA": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 74
+          }
+        },
+        "confusion_matrix": [
+          [
+            113,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            76,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            76,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            74
+          ]
+        ]
+      },
+      "test": {
+        "macro_f1": 0.9944927536231885,
+        "balanced_accuracy": 0.993421052631579,
+        "overall_accuracy": 0.9941176470588236,
+        "micro_f1": 0.9941176470588236,
+        "weighted_f1": 0.9941040068201193,
+        "mcc": 0.9920936316638796,
+        "per_class": {
+          "BRCA": {
+            "precision": 0.9827586206896551,
+            "recall": 1.0,
+            "f1": 0.991304347826087,
+            "support": 114
+          },
+          "HNSC": {
+            "precision": 1.0,
+            "recall": 0.9736842105263158,
+            "f1": 0.9866666666666667,
+            "support": 76
+          },
+          "LGG": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 76
+          },
+          "THCA": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 74
+          }
+        },
+        "confusion_matrix": [
+          [
+            114,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            74,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            76,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            74
+          ]
+        ]
+      }
+    },
+    {
+      "seed": 123,
+      "val": {
+        "macro_f1": 1.0,
+        "balanced_accuracy": 1.0,
+        "overall_accuracy": 1.0,
+        "micro_f1": 1.0,
+        "weighted_f1": 1.0,
+        "mcc": 1.0,
+        "per_class": {
+          "BRCA": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 113
+          },
+          "HNSC": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 76
+          },
+          "LGG": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 76
+          },
+          "THCA": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 74
+          }
+        },
+        "confusion_matrix": [
+          [
+            113,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            76,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            76,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            74
+          ]
+        ]
+      },
+      "test": {
+        "macro_f1": 0.9972526678041586,
+        "balanced_accuracy": 0.9967105263157895,
+        "overall_accuracy": 0.9970588235294118,
+        "micro_f1": 0.9970588235294118,
+        "weighted_f1": 0.997055506317163,
+        "mcc": 0.9960369063172003,
+        "per_class": {
+          "BRCA": {
+            "precision": 0.991304347826087,
+            "recall": 1.0,
+            "f1": 0.9956331877729258,
+            "support": 114
+          },
+          "HNSC": {
+            "precision": 1.0,
+            "recall": 0.9868421052631579,
+            "f1": 0.9933774834437086,
+            "support": 76
+          },
+          "LGG": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 76
+          },
+          "THCA": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 74
+          }
+        },
+        "confusion_matrix": [
+          [
+            114,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            75,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            76,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            74
+          ]
+        ]
+      }
+    },
+    {
+      "seed": 456,
+      "val": {
+        "macro_f1": 1.0,
+        "balanced_accuracy": 1.0,
+        "overall_accuracy": 1.0,
+        "micro_f1": 1.0,
+        "weighted_f1": 1.0,
+        "mcc": 1.0,
+        "per_class": {
+          "BRCA": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 113
+          },
+          "HNSC": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 76
+          },
+          "LGG": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 76
+          },
+          "THCA": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 74
+          }
+        },
+        "confusion_matrix": [
+          [
+            113,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            76,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            76,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            74
+          ]
+        ]
+      },
+      "test": {
+        "macro_f1": 0.9944927536231885,
+        "balanced_accuracy": 0.993421052631579,
+        "overall_accuracy": 0.9941176470588236,
+        "micro_f1": 0.9941176470588236,
+        "weighted_f1": 0.9941040068201193,
+        "mcc": 0.9920936316638796,
+        "per_class": {
+          "BRCA": {
+            "precision": 0.9827586206896551,
+            "recall": 1.0,
+            "f1": 0.991304347826087,
+            "support": 114
+          },
+          "HNSC": {
+            "precision": 1.0,
+            "recall": 0.9736842105263158,
+            "f1": 0.9866666666666667,
+            "support": 76
+          },
+          "LGG": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 76
+          },
+          "THCA": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 74
+          }
+        },
+        "confusion_matrix": [
+          [
+            114,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            74,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            76,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            74
+          ]
+        ]
+      }
+    },
+    {
+      "seed": 789,
+      "val": {
+        "macro_f1": 1.0,
+        "balanced_accuracy": 1.0,
+        "overall_accuracy": 1.0,
+        "micro_f1": 1.0,
+        "weighted_f1": 1.0,
+        "mcc": 1.0,
+        "per_class": {
+          "BRCA": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 113
+          },
+          "HNSC": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 76
+          },
+          "LGG": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 76
+          },
+          "THCA": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 74
+          }
+        },
+        "confusion_matrix": [
+          [
+            113,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            76,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            76,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            74
+          ]
+        ]
+      },
+      "test": {
+        "macro_f1": 0.9944927536231885,
+        "balanced_accuracy": 0.993421052631579,
+        "overall_accuracy": 0.9941176470588236,
+        "micro_f1": 0.9941176470588236,
+        "weighted_f1": 0.9941040068201193,
+        "mcc": 0.9920936316638796,
+        "per_class": {
+          "BRCA": {
+            "precision": 0.9827586206896551,
+            "recall": 1.0,
+            "f1": 0.991304347826087,
+            "support": 114
+          },
+          "HNSC": {
+            "precision": 1.0,
+            "recall": 0.9736842105263158,
+            "f1": 0.9866666666666667,
+            "support": 76
+          },
+          "LGG": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 76
+          },
+          "THCA": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 74
+          }
+        },
+        "confusion_matrix": [
+          [
+            114,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            74,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            76,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            74
+          ]
+        ]
+      }
+    },
+    {
+      "seed": 1024,
+      "val": {
+        "macro_f1": 1.0,
+        "balanced_accuracy": 1.0,
+        "overall_accuracy": 1.0,
+        "micro_f1": 1.0,
+        "weighted_f1": 1.0,
+        "mcc": 1.0,
+        "per_class": {
+          "BRCA": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 113
+          },
+          "HNSC": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 76
+          },
+          "LGG": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 76
+          },
+          "THCA": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 74
+          }
+        },
+        "confusion_matrix": [
+          [
+            113,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            76,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            76,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            74
+          ]
+        ]
+      },
+      "test": {
+        "macro_f1": 0.9944927536231885,
+        "balanced_accuracy": 0.993421052631579,
+        "overall_accuracy": 0.9941176470588236,
+        "micro_f1": 0.9941176470588236,
+        "weighted_f1": 0.9941040068201193,
+        "mcc": 0.9920936316638796,
+        "per_class": {
+          "BRCA": {
+            "precision": 0.9827586206896551,
+            "recall": 1.0,
+            "f1": 0.991304347826087,
+            "support": 114
+          },
+          "HNSC": {
+            "precision": 1.0,
+            "recall": 0.9736842105263158,
+            "f1": 0.9866666666666667,
+            "support": 76
+          },
+          "LGG": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 76
+          },
+          "THCA": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "support": 74
+          }
+        },
+        "confusion_matrix": [
+          [
+            114,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            74,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            76,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            74
+          ]
+        ]
+      }
+    }
+  ]
+}

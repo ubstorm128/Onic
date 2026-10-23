@@ -1,0 +1,313 @@
+{
+  "missing_modality_significance": [
+    {
+      "condition": "C0",
+      "description": "Complete (reference)",
+      "s1_mean": 0.9955967192955765,
+      "s1_std": 0.0013520762954496203,
+      "s2_mean": 0.9950447364593824,
+      "s2_std": 0.0011039656723880408,
+      "mean_gain_s2_minus_s1": -0.0005519828361940649,
+      "cohens_d": -0.4472,
+      "t_statistic": -0.7071,
+      "p_value": 0.50036,
+      "statistically_significant": false
+    },
+    {
+      "condition": "C1",
+      "description": "mRNA missing",
+      "s1_mean": 0.9939381408398041,
+      "s1_std": 0.0011092255667686237,
+      "s2_mean": 0.9950447364593824,
+      "s2_std": 0.0011039656723880408,
+      "mean_gain_s2_minus_s1": 0.0011065956195782656,
+      "cohens_d": 1.0,
+      "t_statistic": 1.5811,
+      "p_value": 0.1525,
+      "statistically_significant": false
+    },
+    {
+      "condition": "C2",
+      "description": "miRNA missing",
+      "s1_mean": 0.9944927536231883,
+      "s1_std": 1.1102230246251565e-16,
+      "s2_mean": 0.9944927536231883,
+      "s2_std": 1.1102230246251565e-16,
+      "mean_gain_s2_minus_s1": 0.0,
+      "cohens_d": 0.0,
+      "t_statistic": 0.0,
+      "p_value": 1.0,
+      "statistically_significant": false
+    },
+    {
+      "condition": "C3",
+      "description": "CNV missing",
+      "s1_mean": 0.9955967192955765,
+      "s1_std": 0.0013520762954496203,
+      "s2_mean": 0.9967006849679645,
+      "s2_std": 0.0011039656723880408,
+      "mean_gain_s2_minus_s1": 0.0011039656723880187,
+      "cohens_d": 0.8944,
+      "t_statistic": 1.4142,
+      "p_value": 0.19647,
+      "statistically_significant": false
+    },
+    {
+      "condition": "C4",
+      "description": "Methy missing",
+      "s1_mean": 0.9955967192955765,
+      "s1_std": 0.0013520762954496203,
+      "s2_mean": 0.9967006849679645,
+      "s2_std": 0.0011039656723880408,
+      "mean_gain_s2_minus_s1": 0.0011039656723880187,
+      "cohens_d": 0.8944,
+      "t_statistic": 1.4142,
+      "p_value": 0.19647,
+      "statistically_significant": false
+    },
+    {
+      "condition": "C5",
+      "description": "mRNA+miRNA missing",
+      "s1_mean": 0.993380782581682,
+      "s1_std": 0.0022239420830125756,
+      "s2_mean": 0.9938171384106604,
+      "s2_std": 0.0013512304250559383,
+      "mean_gain_s2_minus_s1": 0.0004363558289783853,
+      "cohens_d": 0.2371,
+      "t_statistic": 0.375,
+      "p_value": 0.71945,
+      "statistically_significant": false
+    },
+    {
+      "condition": "C6",
+      "description": "mRNA+CNV missing",
+      "s1_mean": 0.9955967192955765,
+      "s1_std": 0.0013520762954496203,
+      "s2_mean": 0.9955967192955765,
+      "s2_std": 0.0013520762954496203,
+      "mean_gain_s2_minus_s1": 0.0,
+      "cohens_d": 0.0,
+      "t_statistic": 0.0,
+      "p_value": 1.0,
+      "statistically_significant": false
+    },
+    {
+      "condition": "C7",
+      "description": "mRNA+Methy missing",
+      "s1_mean": 0.992844240755519,
+      "s1_std": 0.0013460778241216774,
+      "s2_mean": 0.9939452673558711,
+      "s2_std": 0.0026958942101359454,
+      "mean_gain_s2_minus_s1": 0.0011010266003520508,
+      "cohens_d": 0.5167,
+      "t_statistic": 0.817,
+      "p_value": 0.44575,
+      "statistically_significant": false
+    },
+    {
+      "condition": "C8",
+      "description": "miRNA+CNV missing",
+      "s1_mean": 0.9950447364593824,
+      "s1_std": 0.0011039656723880408,
+      "s2_mean": 0.9950447364593824,
+      "s2_std": 0.0011039656723880408,
+      "mean_gain_s2_minus_s1": 0.0,
+      "cohens_d": 0.0,
+      "t_statistic": 0.0,
+      "p_value": 1.0,
+      "statistically_significant": false
+    },
+    {
+      "condition": "C9",
+      "description": "miRNA+Methy missing",
+      "s1_mean": 0.9950447364593824,
+      "s1_std": 0.0011039656723880408,
+      "s2_mean": 0.9950447364593824,
+      "s2_std": 0.0011039656723880408,
+      "mean_gain_s2_minus_s1": 0.0,
+      "cohens_d": 0.0,
+      "t_statistic": 0.0,
+      "p_value": 1.0,
+      "statistically_significant": false
+    },
+    {
+      "condition": "C10",
+      "description": "CNV+Methy missing",
+      "s1_mean": 0.9972526678041586,
+      "s1_std": 0.0,
+      "s2_mean": 0.9972526678041586,
+      "s2_std": 0.0,
+      "mean_gain_s2_minus_s1": 0.0,
+      "cohens_d": 0.0,
+      "t_statistic": 0.0,
+      "p_value": 1.0,
+      "statistically_significant": false
+    },
+    {
+      "condition": "C11",
+      "description": "Only Methy present",
+      "s1_mean": 0.9922573570959514,
+      "s1_std": 0.004470793054473844,
+      "s2_mean": 0.9932579304280502,
+      "s2_std": 0.002469646390276692,
+      "mean_gain_s2_minus_s1": 0.0010005733320987975,
+      "cohens_d": 0.277,
+      "t_statistic": 0.438,
+      "p_value": 0.67613,
+      "statistically_significant": false
+    },
+    {
+      "condition": "C12",
+      "description": "Only CNV present",
+      "s1_mean": 0.6560600074109905,
+      "s1_std": 0.07982627655802757,
+      "s2_mean": 0.7412316098447771,
+      "s2_std": 0.04257340917300611,
+      "mean_gain_s2_minus_s1": 0.08517160243378663,
+      "cohens_d": 1.3314,
+      "t_statistic": 2.1051,
+      "p_value": 0.07911,
+      "statistically_significant": false
+    },
+    {
+      "condition": "C13",
+      "description": "Only miRNA present",
+      "s1_mean": 0.9915087204066673,
+      "s1_std": 0.0030322675470651995,
+      "s2_mean": 0.9945145115200251,
+      "s2_std": 0.0029836630935433056,
+      "mean_gain_s2_minus_s1": 0.0030057911133578585,
+      "cohens_d": 0.9992,
+      "t_statistic": 1.5799,
+      "p_value": 0.15278,
+      "statistically_significant": false
+    },
+    {
+      "condition": "C14",
+      "description": "Only mRNA present",
+      "s1_mean": 0.9955967192955765,
+      "s1_std": 0.0013520762954496203,
+      "s2_mean": 0.9972526678041586,
+      "s2_std": 0.0,
+      "mean_gain_s2_minus_s1": 0.0016559485085820835,
+      "cohens_d": 1.7321,
+      "t_statistic": 2.7386,
+      "p_value": 0.05198,
+      "statistically_significant": false
+    }
+  ],
+  "model_confidence_intervals": {
+    "D1_mRNA_MLP": {
+      "mean_macro_f1": 0.9961,
+      "std_macro_f1": 0.0014,
+      "sem": 0.0007,
+      "ci95_low": 0.9943,
+      "ci95_high": 0.998,
+      "raw_f1_seeds": [
+        0.9945,
+        0.9973,
+        0.9973,
+        0.9973,
+        0.9945
+      ]
+    },
+    "D2_miRNA_MLP": {
+      "mean_macro_f1": 0.9967,
+      "std_macro_f1": 0.0011,
+      "sem": 0.0006,
+      "ci95_low": 0.9952,
+      "ci95_high": 0.9982,
+      "raw_f1_seeds": [
+        0.9973,
+        0.9973,
+        0.9945,
+        0.9973,
+        0.9973
+      ]
+    },
+    "D3_CNV_MLP": {
+      "mean_macro_f1": 0.8532,
+      "std_macro_f1": 0.0102,
+      "sem": 0.0051,
+      "ci95_low": 0.8391,
+      "ci95_high": 0.8674,
+      "raw_f1_seeds": [
+        0.8548,
+        0.8589,
+        0.8661,
+        0.8355,
+        0.8507
+      ]
+    },
+    "D4_Methy_MLP": {
+      "mean_macro_f1": 0.9945,
+      "std_macro_f1": 0.0,
+      "sem": 0.0,
+      "ci95_low": 0.9945,
+      "ci95_high": 0.9945,
+      "raw_f1_seeds": [
+        0.9945,
+        0.9945,
+        0.9945,
+        0.9945,
+        0.9945
+      ]
+    },
+    "D5_Early_Fusion_MLP": {
+      "mean_macro_f1": 0.9961,
+      "std_macro_f1": 0.0014,
+      "sem": 0.0007,
+      "ci95_low": 0.9943,
+      "ci95_high": 0.998,
+      "raw_f1_seeds": [
+        0.9973,
+        0.9973,
+        0.9973,
+        0.9945,
+        0.9945
+      ]
+    },
+    "D6_LightGBM": {
+      "mean_macro_f1": 0.9973,
+      "std_macro_f1": 0.0,
+      "sem": 0.0,
+      "ci95_low": 0.9973,
+      "ci95_high": 0.9973,
+      "raw_f1_seeds": [
+        0.9973,
+        0.9973,
+        0.9973,
+        0.9973,
+        0.9973
+      ]
+    },
+    "E1_Fusion_S1": {
+      "mean_macro_f1": 0.9956,
+      "std_macro_f1": 0.0014,
+      "sem": 0.0007,
+      "ci95_low": 0.9937,
+      "ci95_high": 0.9975,
+      "raw_f1_seeds": [
+        0.9945,
+        0.9945,
+        0.9973,
+        0.9973,
+        0.9945
+      ]
+    },
+    "E2_Fusion_S2": {
+      "mean_macro_f1": 0.995,
+      "std_macro_f1": 0.0011,
+      "sem": 0.0006,
+      "ci95_low": 0.9935,
+      "ci95_high": 0.9966,
+      "raw_f1_seeds": [
+        0.9945,
+        0.9973,
+        0.9945,
+        0.9945,
+        0.9945
+      ]
+    }
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "generated_figures": [
+    {
+      "id": "A1-Raw",
+      "filename": "A1_confusion_matrix_raw.png",
+      "type": "Figure (PNG)",
+      "source": "fusion_s1_complete_seed_42_best.pt",
+      "key_metric": "Raw counts (338/340 correct, Acc = 99.41%)"
+    },
+    {
+      "id": "A1-Norm",
+      "filename": "A1_confusion_matrix_normalized.png",
+      "type": "Figure (PNG)",
+      "source": "fusion_s1_complete_seed_42_best.pt",
+      "key_metric": "Row percentages (BRCA: 100%, HNSC: 97.4%, LGG: 100%, THCA: 100%)"
+    },
+    {
+      "id": "A2",
+      "filename": "A2_multiclass_roc.png",
+      "type": "Figure (PNG)",
+      "source": "fusion_s1_complete_seed_42_best.pt",
+      "key_metric": "Macro AUC = 0.9996, Micro AUC = 0.9993"
+    },
+    {
+      "id": "A3",
+      "filename": "A3_precision_recall.png",
+      "type": "Figure (PNG)",
+      "source": "fusion_s1_complete_seed_42_best.pt",
+      "key_metric": "Micro AP = 0.9980"
+    },
+    {
+      "id": "A4-Overall",
+      "filename": "A4_metrics_overall.csv",
+      "type": "Data Table (CSV)",
+      "source": "s1_s2_test_predictions.npz",
+      "key_metric": "Macro-F1 = 0.9945, Accuracy = 0.9941"
+    },
+    {
+      "id": "A4-PerClass",
+      "filename": "A4_metrics_per_class.csv",
+      "type": "Data Table (CSV)",
+      "source": "s1_s2_test_predictions.npz",
+      "key_metric": "Per-class precision, recall, F1, support, AUC"
+    },
+    {
+      "id": "A4-TableImg",
+      "filename": "A4_metrics_table.png",
+      "type": "Figure (PNG)",
+      "source": "A4_metrics_per_class.csv",
+      "key_metric": "Presentation-ready metrics table"
+    },
+    {
+      "id": "A5-Loss",
+      "filename": "A5_training_loss.png",
+      "type": "Figure (PNG)",
+      "source": "fusion_s1/s2_seed_*_best.pt",
+      "key_metric": "Best epoch & validation loss across 5 seeds"
+    },
+    {
+      "id": "A5-Accuracy",
+      "filename": "A5_training_accuracy.png",
+      "type": "Figure (PNG)",
+      "source": "fusion_s1/s2_seed_*_best.pt",
+      "key_metric": "Validation Macro-F1 (1.0000) vs Convergence Epoch"
+    },
+    {
+      "id": "B1-Img",
+      "filename": "B1_missing_condition_performance.png",
+      "type": "Figure (PNG)",
+      "source": "statistical_significance_report.csv",
+      "key_metric": "S1 vs S2 Macro-F1 across C0-C14; C12 +8.52% (p=0.1722)"
+    },
+    {
+      "id": "B1-CSV",
+      "filename": "B1_missing_condition_metrics.csv",
+      "type": "Data Table (CSV)",
+      "source": "statistical_significance_report.csv",
+      "key_metric": "Complete paired metrics table for 15 conditions"
+    },
+    {
+      "id": "B2",
+      "filename": "B2_performance_vs_missing_rate.png",
+      "type": "Figure (PNG)",
+      "source": "per_seed_missing_modality_results.csv",
+      "key_metric": "Degradation curve across 0%, 25%, 50%, 75% missing rates"
+    },
+    {
+      "id": "B3-Img",
+      "filename": "B3_baseline_comparison.png",
+      "type": "Figure (PNG)",
+      "source": "artifacts/metrics/baseline_*.json",
+      "key_metric": "D1-D6 vs E1-E2 complete comparison; LightGBM complete lead (0.9973)"
+    },
+    {
+      "id": "B3-CSV",
+      "filename": "B3_baseline_metrics.csv",
+      "type": "Data Table (CSV)",
+      "source": "artifacts/metrics/baseline_*.json",
+      "key_metric": "Baseline summary table with complete-only notes"
+    },
+    {
+      "id": "B4",
+      "filename": "B4_single_modality_confusion_matrices.png",
+      "type": "Figure (PNG)",
+      "source": "fusion_s2_dropout_seed_42_best.pt",
+      "key_metric": "2x2 grid for C11 (Methy), C12 (CNV), C13 (miRNA), C14 (mRNA)"
+    },
+    {
+      "id": "B5-Img",
+      "filename": "B5_ablation_study.png",
+      "type": "Figure (PNG)",
+      "source": "ablation_study.json",
+      "key_metric": "4-panel ablation: Token, Dropout (p=0.5 -> 0.7897), Latent Dim, Attention Heads"
+    },
+    {
+      "id": "B5-CSV",
+      "filename": "B5_ablation_results.csv",
+      "type": "Data Table (CSV)",
+      "source": "ablation_study.json",
+      "key_metric": "Ablation results on C0 and C12"
+    },
+    {
+      "id": "C1",
+      "filename": "C1_fused_embeddings_tsne.png",
+      "type": "Figure (PNG)",
+      "source": "fusion_s1/s2_seed_42_best.pt (h_fused hook)",
+      "key_metric": "t-SNE 2D projections of R^128 metric space (C0 vs C12)"
+    },
+    {
+      "id": "D1",
+      "filename": "D1_model_architecture.png",
+      "type": "Diagram (PNG)",
+      "source": "src/models/fusion.py",
+      "key_metric": "Overall model architecture with tensor shapes"
+    },
+    {
+      "id": "D2",
+      "filename": "D2_pipeline_workflow.png",
+      "type": "Diagram (PNG)",
+      "source": "Pipeline specifications & splits.csv",
+      "key_metric": "End-to-end zero-leakage workflow"
+    },
+    {
+      "id": "D3",
+      "filename": "D3_missing_modality_handling.png",
+      "type": "Diagram (PNG)",
+      "source": "src/models/fusion.py & dataset.py",
+      "key_metric": "Mathematical missingness handling & token replacement"
+    },
+    {
+      "id": "D4-Dist",
+      "filename": "D4_class_distribution.png",
+      "type": "Figure (PNG)",
+      "source": "splits.csv",
+      "key_metric": "Patient counts across Train, Val, Test"
+    },
+    {
+      "id": "D4-Avail",
+      "filename": "D4_modality_availability.png",
+      "type": "Figure (PNG)",
+      "source": "dataset.py EVAL_CONDITIONS",
+      "key_metric": "15-condition binary mask heatmap"
+    },
+    {
+      "id": "D4-Summary",
+      "filename": "D4_dataset_summary.csv",
+      "type": "Data Table (CSV)",
+      "source": "Dataset audit & splits.csv",
+      "key_metric": "Dataset specifications summary table"
+    }
+  ]
+}

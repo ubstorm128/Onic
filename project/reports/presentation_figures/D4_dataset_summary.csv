@@ -1,0 +1,10 @@
+Category,Value,Details
+Total Patients,"2,263",Unique TCGA patient barcodes; 0 multi-sample patients
+Train Split,"1,584 (70.0%)","Stratified across BRCA, HNSC, LGG, THCA"
+Validation Split,339 (15.0%),Used for checkpoint selection and early stopping
+Test Split,340 (15.0%),Held-out test split for all 15 condition evaluations
+Modality 1: mRNA,"3,217 genes",StandardScaler fitted on train
+Modality 2: miRNA,383 microRNAs,StandardScaler fitted on train
+Modality 3: CNV,"3,105 regions",StandardScaler fitted on train
+Modality 4: Methy,"3,139 CpG probes","MinMaxScaler [0,1] fitted on train"
+Total Omics Features,"9,844 features",Zero missing values in harmonized dataset

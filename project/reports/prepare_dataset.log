@@ -1,0 +1,36 @@
+[2026-10-15 22:10:21] [INFO] [prepare_dataset]: Starting Stage C Data Preparation Pipeline...
+[2026-10-15 22:10:21] [INFO] [prepare_dataset]: Loading labels from D:\Personal Files\BCA\5TH SEM\Major_Project_Research\Dataset_2\MLOmics\Main_Dataset\Classification_datasets\Pan-cancer\Original\Pan-cancer_label_num.csv
+[2026-10-15 22:12:20] [INFO] [prepare_dataset]: Starting Stage C Data Preparation Pipeline...
+[2026-10-15 22:12:20] [INFO] [prepare_dataset]: Loading labels from D:\Personal Files\BCA\5TH SEM\Major_Project_Research\Dataset_2\MLOmics\Main_Dataset\Classification_datasets\Pan-cancer\Original\Pan-cancer_label_num.csv
+[2026-10-15 22:12:20] [INFO] [prepare_dataset]: Read 8314 total labels from label file.
+[2026-10-15 22:12:20] [INFO] [prepare_dataset]: Verifying cohort class counts:
+[2026-10-15 22:12:20] [INFO] [prepare_dataset]:   BRCA (label 2): expected 757, got 757
+[2026-10-15 22:12:20] [INFO] [prepare_dataset]:   HNSC (label 8): expected 506, got 506
+[2026-10-15 22:12:20] [INFO] [prepare_dataset]:   LGG (label 13): expected 506, got 506
+[2026-10-15 22:12:20] [INFO] [prepare_dataset]:   THCA (label 27): expected 494, got 494
+[2026-10-15 22:12:20] [INFO] [prepare_dataset]: Generating stratified train/val/test splits (70/15/15)...
+[2026-10-15 22:12:21] [INFO] [prepare_dataset]: Stratified split summary:
+cancer_type  BRCA  HNSC  LGG  THCA
+split                             
+test          114    76   76    74
+train         530   354  354   346
+val           113    76   76    74
+[2026-10-15 22:12:21] [INFO] [prepare_dataset]: Split sizes: Train=1584 (70.0%), Val=339 (15.0%), Test=340 (15.0%)
+[2026-10-15 22:12:21] [INFO] [prepare_dataset]: Processing modality mRNA from Pan-cancer_mRNA.csv...
+[2026-10-15 22:12:31] [INFO] [prepare_dataset]:   mRNA raw shape: (2263, 3217) (2,263 samples × 3217 features)
+[2026-10-15 22:12:31] [INFO] [prepare_dataset]:   Fitting mRNA preprocessor exclusively on training split (1584 samples)...
+[2026-10-15 22:12:31] [INFO] [prepare_dataset]:   mRNA processed shape: train=(1584, 3217), val=(339, 3217), test=(340, 3217) (dropped 0 zero-variance features)
+[2026-10-15 22:12:32] [INFO] [prepare_dataset]: Processing modality miRNA from Pan-cancer_miRNA.csv...
+[2026-10-15 22:12:34] [INFO] [prepare_dataset]:   miRNA raw shape: (2263, 383) (2,263 samples × 383 features)
+[2026-10-15 22:12:34] [INFO] [prepare_dataset]:   Fitting miRNA preprocessor exclusively on training split (1584 samples)...
+[2026-10-15 22:12:34] [INFO] [prepare_dataset]:   miRNA processed shape: train=(1584, 383), val=(339, 383), test=(340, 383) (dropped 0 zero-variance features)
+[2026-10-15 22:12:34] [INFO] [prepare_dataset]: Processing modality CNV from Pan-cancer_CNV.csv...
+[2026-10-15 22:12:50] [INFO] [prepare_dataset]:   CNV raw shape: (2263, 3105) (2,263 samples × 3105 features)
+[2026-10-15 22:12:50] [INFO] [prepare_dataset]:   Fitting CNV preprocessor exclusively on training split (1584 samples)...
+[2026-10-15 22:12:50] [INFO] [prepare_dataset]:   CNV processed shape: train=(1584, 3105), val=(339, 3105), test=(340, 3105) (dropped 0 zero-variance features)
+[2026-10-15 22:12:51] [INFO] [prepare_dataset]: Processing modality Methy from Pan-cancer_Methy.csv...
+[2026-10-15 22:13:08] [INFO] [prepare_dataset]:   Methy raw shape: (2263, 3139) (2,263 samples × 3139 features)
+[2026-10-15 22:13:08] [INFO] [prepare_dataset]:   Fitting Methy preprocessor exclusively on training split (1584 samples)...
+[2026-10-15 22:13:08] [INFO] [prepare_dataset]:   Methy processed shape: train=(1584, 3139), val=(339, 3139), test=(340, 3139) (dropped 0 zero-variance features)
+[2026-10-15 22:13:09] [INFO] [prepare_dataset]: Stage C Data Preparation successfully complete!
+[2026-10-15 22:13:09] [INFO] [prepare_dataset]: Artifacts saved in D:\Personal Files\BCA\5TH SEM\Major_Project_Research\project\data\processed and D:\Personal Files\BCA\5TH SEM\Major_Project_Research\project\data\splits\splits.csv

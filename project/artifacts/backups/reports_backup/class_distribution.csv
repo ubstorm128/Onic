@@ -1,0 +1,5 @@
+cancer_type,numeric_label,tcga_project,actual_count,expected_count,match
+BRCA,2,TCGA-BRCA,757,757,True
+HNSC,8,TCGA-HNSC,506,506,True
+LGG,13,TCGA-LGG,506,506,True
+THCA,27,TCGA-THCA,494,494,True

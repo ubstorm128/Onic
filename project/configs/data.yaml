@@ -1,0 +1,58 @@
+# Data Configuration for Multimodal Cancer Classification
+# ========================================================
+
+# Paths
+raw_data_dir: "D:/Personal Files/BCA/5TH SEM/Major_Project_Research/Dataset_2/MLOmics/Main_Dataset/Classification_datasets/Pan-cancer/Original"
+processed_data_dir: "data/processed"
+splits_dir: "data/splits"
+
+# Target Cancer Classes
+classes:
+  BRCA: 0
+  HNSC: 1
+  LGG:  2
+  THCA: 3
+
+# Original MLOmics label encoding to class mapping
+label_mapping:
+  2:  "BRCA"
+  8:  "HNSC"
+  13: "LGG"
+  27: "THCA"
+
+# Modality definitions
+modalities:
+  mRNA:
+    filename: "Pan-cancer_mRNA.csv"
+    feature_col: "sample"
+    expected_features: 3217
+    normalization: "standard"
+  miRNA:
+    filename: "Pan-cancer_miRNA.csv"
+    feature_col: "sample"
+    expected_features: 383
+    normalization: "standard"
+  CNV:
+    filename: "Pan-cancer_CNV.csv"
+    feature_col: "Sample"
+    expected_features: 3105
+    normalization: "standard"
+  Methy:
+    filename: "Pan-cancer_Methy.csv"
+    feature_col: "sample"
+    expected_features: 3139
+    normalization: "minmax"
+
+# Train / Validation / Test Splitting
+splitting:
+  train_ratio: 0.70
+  val_ratio: 0.15
+  test_ratio: 0.15
+  stratified: true
+  random_seed: 42
+
+# Preprocessing & Feature Filtering
+preprocessing:
+  variance_threshold: 0.0  # Remove strictly constant features on train
+  variance_percentile_cutoff: 0.0  # Optional percentile cutoff (0 = retain all non-constant)
+  clip_outliers: false
