@@ -3,11 +3,11 @@
 </p>
 
 <p align="center">
-  <a href="#-animated-architecture-in-action"><img src="https://img.shields.io/badge/Architecture-Cross--Attention%20Transformer-1e293b?style=for-the-badge&logo=pytorch&logoColor=white" alt="Architecture"/></a>
-  <a href="#-empirical-benchmarks"><img src="https://img.shields.io/badge/Peak%20Macro--F1-99.56%25-047857?style=for-the-badge" alt="Macro F1"/></a>
-  <a href="#-empirical-benchmarks"><img src="https://img.shields.io/badge/Macro--AUC-0.9996-1e40af?style=for-the-badge" alt="Macro AUC"/></a>
-  <a href="#-clinical-web-simulator"><img src="https://img.shields.io/badge/Clinical%20UI-FastAPI%20%2B%20Vanilla%20JS-334155?style=for-the-badge&logo=fastapi&logoColor=white" alt="Web UI"/></a>
-  <a href="#-academic-credits"><img src="https://img.shields.io/badge/Institution-Assam%20down%20town%20University-4338ca?style=for-the-badge" alt="Institution"/></a>
+  <a href="#animated-architecture-in-action"><img src="https://img.shields.io/badge/Architecture-Cross--Attention%20Transformer-1e293b?style=for-the-badge&logo=pytorch&logoColor=white" alt="Architecture"/></a>
+  <a href="#empirical-benchmarks-15-combinatorial-states"><img src="https://img.shields.io/badge/Peak%20Macro--F1-99.56%25-047857?style=for-the-badge" alt="Macro F1"/></a>
+  <a href="#empirical-benchmarks-15-combinatorial-states"><img src="https://img.shields.io/badge/Macro--AUC-0.9996-1e40af?style=for-the-badge" alt="Macro AUC"/></a>
+  <a href="#clinical-web-simulator--telemetry"><img src="https://img.shields.io/badge/Clinical%20UI-FastAPI%20%2B%20Vanilla%20JS-334155?style=for-the-badge&logo=fastapi&logoColor=white" alt="Web UI"/></a>
+  <a href="#academic-credits--team"><img src="https://img.shields.io/badge/Institution-Assam%20down%20town%20University-4338ca?style=for-the-badge" alt="Institution"/></a>
 </p>
 
 <p align="center">
@@ -16,21 +16,21 @@
 
 ---
 
-## 📑 Table of Contents
+## Table of Contents
 
-- [🌟 Research Motivation](#-research-motivation)
-- [⚡ Animated Architecture in Action](#-animated-architecture-in-action)
-- [🔬 Architectural Novelty](#-architectural-novelty)
-- [💻 Clinical Web Simulator & Telemetry](#-clinical-web-simulator--telemetry)
-- [📊 Empirical Benchmarks (15 Combinatorial States)](#-empirical-benchmarks-15-combinatorial-states)
-- [📈 Latent Space & Diagnostic Visualizations](#-latent-space--diagnostic-visualizations)
-- [📂 Repository Structure](#-repository-structure)
-- [🚀 Quickstart & Reproduction](#-quickstart--reproduction)
-- [👥 Academic Credits & Team](#-academic-credits--team)
+- [Research Motivation](#research-motivation)
+- [Animated Architecture in Action](#animated-architecture-in-action)
+- [Architectural Novelty](#architectural-novelty)
+- [Clinical Web Simulator & Telemetry](#clinical-web-simulator--telemetry)
+- [Empirical Benchmarks (15 Combinatorial States)](#empirical-benchmarks-15-combinatorial-states)
+- [Latent Space & Diagnostic Visualizations](#latent-space--diagnostic-visualizations)
+- [Repository Structure](#repository-structure)
+- [Quickstart & Reproduction](#quickstart--reproduction)
+- [Academic Credits & Team](#academic-credits--team)
 
 ---
 
-## 🌟 Research Motivation
+## Research Motivation
 
 In computational oncology, high-throughput molecular profiling (such as transcriptomics, genomics, and epigenetics) provides rich, complementary signals for cancer classification. However, **in real-world clinical pathology, complete multi-omic profiles are rarely available** for every patient due to tissue degradation, prohibitive sequencing costs, or fragmented diagnostic workflows.
 
@@ -44,7 +44,7 @@ Standard machine learning models (early fusion concatenations, late fusion votin
 
 ---
 
-## ⚡ Animated Architecture in Action
+## Animated Architecture in Action
 
 The following vector animation demonstrates how patient omic profiles flow through dedicated MLPs, pass through the **Resilience Gate** (substituting missing assays with learned latent default vectors $\mathbf{e}_{\text{default}}$), cross-attend in the transformer core, and produce real-time subtype diagnoses:
 
@@ -57,7 +57,7 @@ The following vector animation demonstrates how patient omic profiles flow throu
 
 ---
 
-## 🔬 Architectural Novelty
+## Architectural Novelty
 
 ```
                           ┌────────────────────────┐
@@ -123,7 +123,7 @@ The following vector animation demonstrates how patient omic profiles flow throu
 
 ---
 
-## 💻 Clinical Web Simulator & Telemetry
+## Clinical Web Simulator & Telemetry
 
 Inside [`Code/`](file:///d:/PLACE/BCA/MajorProject/Onic/Code) is an interactive research client and FastAPI backend:
 
@@ -141,7 +141,7 @@ python Code/api_server.py
 
 ---
 
-## 📊 Empirical Benchmarks (15 Combinatorial States)
+## Empirical Benchmarks (15 Combinatorial States)
 
 Evaluated across **2,263 patient samples** (TCGA cohort) over 5 random seeds using stratified, patient-leak-free splits:
 
@@ -168,7 +168,7 @@ Evaluated across **2,263 patient samples** (TCGA cohort) over 5 random seeds usi
 
 ---
 
-## 📈 Latent Space & Diagnostic Visualizations
+## Latent Space & Diagnostic Visualizations
 
 <p align="center">
   <img src="project/reports/presentation_figures/A1_confusion_matrix_normalized.png" width="48%" alt="Normalized Confusion Matrix"/>
@@ -185,7 +185,7 @@ Evaluated across **2,263 patient samples** (TCGA cohort) over 5 random seeds usi
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```
 Onic/
@@ -215,7 +215,7 @@ Onic/
 
 ---
 
-## 🚀 Quickstart & Reproduction
+## Quickstart & Reproduction
 
 ### 1. Clone the Repository
 
@@ -263,7 +263,7 @@ python Code/api_server.py
 
 ---
 
-## 👥 Academic Credits & Team
+## Academic Credits & Team
 
 Developed as a Major Project for the **Bachelor of Computer Applications (BCA)** degree:
 
@@ -279,5 +279,5 @@ Developed as a Major Project for the **Bachelor of Computer Applications (BCA)**
 ---
 
 <p align="center">
-  <sub>Built with ❤️ for biomedical machine learning and clinical diagnostic resilience.</sub>
+  <sub>Built for biomedical machine learning and clinical diagnostic resilience.</sub>
 </p>
