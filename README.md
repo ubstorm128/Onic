@@ -7,7 +7,7 @@
   <a href="#-empirical-benchmarks"><img src="https://img.shields.io/badge/Peak%20Macro--F1-99.56%25-047857?style=for-the-badge" alt="Macro F1"/></a>
   <a href="#-empirical-benchmarks"><img src="https://img.shields.io/badge/Macro--AUC-0.9996-1e40af?style=for-the-badge" alt="Macro AUC"/></a>
   <a href="#-clinical-web-simulator"><img src="https://img.shields.io/badge/Clinical%20UI-FastAPI%20%2B%20Vanilla%20JS-334155?style=for-the-badge&logo=fastapi&logoColor=white" alt="Web UI"/></a>
-  <a href="#-academic-credits"><img src="https://img.shields.io/badge/Institution-St.%20Anthony's%20College-4338ca?style=for-the-badge" alt="Institution"/></a>
+  <a href="#-academic-credits"><img src="https://img.shields.io/badge/Institution-Assam%20down%20town%20University-4338ca?style=for-the-badge" alt="Institution"/></a>
 </p>
 
 <p align="center">
@@ -267,14 +267,14 @@ python Code/api_server.py
 
 Developed as a Major Project for the **Bachelor of Computer Applications (BCA)** degree:
 
-- **Department:** Department of Computer Science
-- **Institution:** [St. Anthony's College, Shillong](https://anthonys.ac.in)
+- **Department:** Faculty of Computer Technology
+- **Institution:** [Assam down town University, Guwahati](https://adtu.in)
 - **Academic Supervisor:** Mr. Wanraplang Nongbri
 
 ### Research & Development Team:
-- **Udit Bora** — *Lead Developer & Deep Learning Architecture*
-- **Kritartha Barman** — *Data Engineering & Leak-Free Pipeline*
-- **Aniket Saha** — *Evaluation Protocols & Interface Engineering*
+- **Aniket Saha** — *Data Engineering & Deep Learning Architecture*
+- **Udit Bora** — *Lead Developer & Interface Engineering*
+- **Kritartha Barman** — *Evaluation Protocols & Leak-Free Pipeline*
 
 ---
 

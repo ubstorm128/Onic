@@ -41,8 +41,8 @@ Unlike conventional multimodal cancer diagnosis models that crash or experience 
 ## Brand Commitments
 
 - **Project Name**: Robust Multimodal AI for Multi-Cancer Classification
-- **Institutional Identity**: Department of Computer Science, St. Anthony's College
-- **Contributors**: Udit Bora (Lead Dev & ML Architecture), Kritartha Barman (Data Pipeline), Aniket Saha (Evaluation & Frontend), Mr. Wanraplang Nongbri (Academic Supervisor)
+- **Institutional Identity**: Faculty of Computer Technology, Assam down town University, Guwahati
+- **Contributors**: Aniket Saha (Data Engineering & Deep Learning Architecture), Udit Bora (Lead Developer & Interface Engineering), Kritartha Barman (Evaluation Protocols & Leak-Free Pipeline), Mr. Wanraplang Nongbri (Academic Supervisor)
 - **Tone**: Rigorous, scientific, modern, research-grade, and precise.
 
 ## Evidence on Hand
