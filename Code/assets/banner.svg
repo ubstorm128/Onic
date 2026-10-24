@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 280" width="100%" height="100%">
+  <defs>
+    <!-- Matte Editorial Dark Palette -->
+    <linearGradient id="editorialBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="60%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+
+    <!-- Subtle Slate Gradient for Title -->
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="70%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap');
+
+      .brand-title {
+        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+      }
+      .brand-sub {
+        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        font-weight: 500;
+      }
+      .mono-pill {
+        font-family: 'JetBrains Mono', monospace;
+      }
+
+      /* Subtle, restrained data flow */
+      .subtle-stream {
+        stroke-dasharray: 6 12;
+        animation: streamFlow 5s linear infinite;
+      }
+      @keyframes streamFlow {
+        from { stroke-dashoffset: 72; }
+        to { stroke-dashoffset: 0; }
+      }
+    </style>
+  </defs>
+
+  <!-- Canvas Container -->
+  <rect width="1200" height="280" rx="12" fill="url(#editorialBg)" stroke="#334155" stroke-width="1"/>
+
+  <!-- Minimal Architectural Grid Lines -->
+  <g opacity="0.12" stroke="#64748b" stroke-width="0.8">
+    <line x1="80" y1="0" x2="80" y2="280"/>
+    <line x1="1120" y1="0" x2="1120" y2="280"/>
+    <line x1="0" y1="50" x2="1200" y2="50"/>
+    <line x1="0" y1="230" x2="1200" y2="230"/>
+  </g>
+
+  <!-- Muted Signal Connectors -->
+  <g fill="none" stroke-width="1.2" opacity="0.3">
+    <path d="M 80 140 C 300 100, 500 180, 700 140 S 950 100, 1120 140" stroke="#94a3b8" class="subtle-stream"/>
+    <path d="M 80 145 C 300 180, 500 100, 700 145 S 950 180, 1120 145" stroke="#64748b" class="subtle-stream" style="animation-duration: 7s;"/>
+  </g>
+
+  <!-- Center Branding -->
+  <g transform="translate(600, 95)" text-anchor="middle">
+    <!-- Institutional Category Tag -->
+    <rect x="-170" y="-45" width="340" height="26" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="0" y="-28" fill="#94a3b8" font-size="11" font-weight="600" class="mono-pill" letter-spacing="1">RESEARCH FRAMEWORK • TCGA MULTI-OMICS</text>
+
+    <!-- Main Title -->
+    <text x="0" y="24" fill="url(#textGrad)" font-size="44" class="brand-title">ONIC ARCHITECTURE</text>
+
+    <!-- Subtitle -->
+    <text x="0" y="58" fill="#cbd5e1" font-size="16" class="brand-sub">
+      Robust Multi-Cancer Classification Under Missing Modalities
+    </text>
+
+    <text x="0" y="80" fill="#94a3b8" font-size="12.5" class="brand-sub">
+      Cross-Modal Attention • Modality Dropout • Learned Default Imputation • 4 Pan-Cancer Malignancies
+    </text>
+  </g>
+
+  <!-- Metric Badges Row -->
+  <g transform="translate(600, 230)" text-anchor="middle">
+    <!-- Pill 1 -->
+    <g transform="translate(-315, 0)">
+      <rect x="-95" y="-16" width="190" height="32" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <circle cx="-75" cy="0" r="3.5" fill="#3b82f6"/>
+      <text x="5" y="4" fill="#e2e8f0" font-size="12" font-weight="600" class="mono-pill">99.56% MACRO-F1</text>
+    </g>
+
+    <!-- Pill 2 -->
+    <g transform="translate(-105, 0)">
+      <rect x="-95" y="-16" width="190" height="32" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <circle cx="-75" cy="0" r="3.5" fill="#6366f1"/>
+      <text x="5" y="4" fill="#e2e8f0" font-size="12" font-weight="600" class="mono-pill">0.9996 MACRO-AUC</text>
+    </g>
+
+    <!-- Pill 3 -->
+    <g transform="translate(105, 0)">
+      <rect x="-95" y="-16" width="190" height="32" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <circle cx="-75" cy="0" r="3.5" fill="#10b981"/>
+      <text x="5" y="4" fill="#e2e8f0" font-size="12" font-weight="600" class="mono-pill">15 MISSING STATES</text>
+    </g>
+
+    <!-- Pill 4 -->
+    <g transform="translate(315, 0)">
+      <rect x="-95" y="-16" width="190" height="32" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <circle cx="-75" cy="0" r="3.5" fill="#f59e0b"/>
+      <text x="5" y="4" fill="#e2e8f0" font-size="12" font-weight="600" class="mono-pill">+8.52% STRESS GAIN</text>
+    </g>
+  </g>
+</svg>

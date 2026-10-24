@@ -21,3 +21,18 @@ env/
 *.swo
 .DS_Store
 Thumbs.db
+
+# Large Raw Datasets (>100MB blocked by GitHub)
+TCGA_Dataset/
+
+# Agent Skills & Design Tooling
+.agents/
+.agent/
+.impeccable/
+.taste-skill/
+.gemini/
+.claude/
+**/skills/design-taste-frontend/
+**/skills/impeccable/
+**/.impeccable/
+**/.taste-skill/

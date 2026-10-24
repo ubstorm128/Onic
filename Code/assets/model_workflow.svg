@@ -1,0 +1,370 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 560" width="100%" height="100%">
+  <defs>
+    <!-- Matte Editorial Palette (Non-Neon) -->
+    <linearGradient id="canvasBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b1329"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#0b1329"/>
+    </linearGradient>
+
+    <!-- Subtle Section Headers -->
+    <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap');
+
+      text {
+        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      }
+      .mono {
+        font-family: 'JetBrains Mono', monospace;
+      }
+
+      /* Calm, professional flow paths */
+      .flow-path {
+        stroke-dasharray: 6 10;
+        animation: flowAnimation 3.2s linear infinite;
+      }
+      .flow-path-fast {
+        stroke-dasharray: 5 8;
+        animation: flowAnimation 2.2s linear infinite;
+      }
+
+      @keyframes flowAnimation {
+        from { stroke-dashoffset: 32; }
+        to { stroke-dashoffset: 0; }
+      }
+
+      /* Subtle attention weight link oscillation */
+      .attn-link {
+        animation: attnFluctuate 2.8s ease-in-out infinite alternate;
+      }
+      @keyframes attnFluctuate {
+        0% { stroke-opacity: 0.3; stroke-width: 1; }
+        100% { stroke-opacity: 0.8; stroke-width: 1.8; }
+      }
+
+      /* Calm missing indicator pulse */
+      .missing-soft-pulse {
+        animation: missingSoft 3s ease-in-out infinite;
+      }
+      @keyframes missingSoft {
+        0%, 100% { opacity: 0.7; }
+        50% { opacity: 1; }
+      }
+    </style>
+  </defs>
+
+  <!-- Main Background Container -->
+  <rect width="1060" height="560" rx="14" fill="url(#canvasBg)" stroke="#334155" stroke-width="1.2"/>
+
+  <!-- Minimal Coordinate Grid Overlay -->
+  <g opacity="0.07" stroke="#94a3b8" stroke-width="0.8">
+    <line x1="0" y1="70" x2="1060" y2="70"/>
+    <line x1="0" y1="480" x2="1060" y2="480"/>
+    <line x1="205" y1="70" x2="205" y2="480"/>
+    <line x1="390" y1="70" x2="390" y2="480"/>
+    <line x1="600" y1="70" x2="600" y2="480"/>
+    <line x1="800" y1="70" x2="800" y2="480"/>
+  </g>
+
+  <!-- Header Title Bar -->
+  <g transform="translate(35, 36)">
+    <circle cx="6" cy="6" r="4.5" fill="#2563eb"/>
+    <text x="20" y="10" fill="#f8fafc" font-size="14.5" font-weight="700" letter-spacing="0.3">ONIC • MULTIMODAL CROSS-ATTENTION NEURAL ARCHITECTURE</text>
+    
+    <rect x="710" y="-5" width="280" height="24" rx="4" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <text x="722" y="11" fill="#94a3b8" font-size="11" font-weight="600" class="mono">STATUS: 99.56% MACRO-F1 | 15 CONDITIONS</text>
+  </g>
+
+  <!-- ==================== COLUMN 1: PATIENT MULTI-OMICS ==================== -->
+  <g transform="translate(35, 78)">
+    <text x="0" y="0" fill="#94a3b8" font-size="11" font-weight="700" letter-spacing="0.8">1. PATIENT OMICS</text>
+
+    <!-- 1. mRNA -->
+    <g transform="translate(0, 18)">
+      <rect width="150" height="74" rx="8" fill="#111c33" stroke="#2563eb" stroke-width="1.2"/>
+      <rect x="0" y="0" width="4" height="74" rx="1" fill="#3b82f6"/>
+      <text x="14" y="24" fill="#e2e8f0" font-size="12.5" font-weight="700">mRNA Expression</text>
+      <text x="14" y="41" fill="#94a3b8" font-size="10.5">Transcriptomic</text>
+      <rect x="14" y="49" width="105" height="18" rx="3" fill="#1e293b"/>
+      <text x="20" y="62" fill="#93c5fd" font-size="10" font-weight="600" class="mono">3,217 features</text>
+    </g>
+
+    <!-- 2. miRNA -->
+    <g transform="translate(0, 114)">
+      <rect width="150" height="74" rx="8" fill="#191536" stroke="#4f46e5" stroke-width="1.2"/>
+      <rect x="0" y="0" width="4" height="74" rx="1" fill="#6366f1"/>
+      <text x="14" y="24" fill="#e2e8f0" font-size="12.5" font-weight="700">miRNA Regulation</text>
+      <text x="14" y="41" fill="#94a3b8" font-size="10.5">Post-Transcriptional</text>
+      <rect x="14" y="49" width="95" height="18" rx="3" fill="#1e293b"/>
+      <text x="20" y="62" fill="#a5b4fc" font-size="10" font-weight="600" class="mono">383 features</text>
+    </g>
+
+    <!-- 3. CNV -->
+    <g transform="translate(0, 210)">
+      <rect width="150" height="74" rx="8" fill="#0d241c" stroke="#059669" stroke-width="1.2"/>
+      <rect x="0" y="0" width="4" height="74" rx="1" fill="#10b981"/>
+      <text x="14" y="24" fill="#e2e8f0" font-size="12.5" font-weight="700">Copy Number (CNV)</text>
+      <text x="14" y="41" fill="#94a3b8" font-size="10.5">Somatic Alterations</text>
+      <rect x="14" y="49" width="105" height="18" rx="3" fill="#1e293b"/>
+      <text x="20" y="62" fill="#6ee7b7" font-size="10" font-weight="600" class="mono">3,105 features</text>
+    </g>
+
+    <!-- 4. DNA Methylation -->
+    <g transform="translate(0, 306)">
+      <rect width="150" height="74" rx="8" fill="#241a0d" stroke="#b45309" stroke-width="1.2"/>
+      <rect x="0" y="0" width="4" height="74" rx="1" fill="#f59e0b"/>
+      <text x="14" y="24" fill="#e2e8f0" font-size="12.5" font-weight="700">DNA Methylation</text>
+      <text x="14" y="41" fill="#94a3b8" font-size="10.5">Epigenetic Silencing</text>
+      <rect x="14" y="49" width="105" height="18" rx="3" fill="#1e293b"/>
+      <text x="20" y="62" fill="#fcd34d" font-size="10" font-weight="600" class="mono">3,139 features</text>
+    </g>
+  </g>
+
+  <!-- Connectors: Stage 1 -> Stage 2 -->
+  <g fill="none" stroke-width="1.6">
+    <path d="M 185 133 L 225 133" stroke="#3b82f6" class="flow-path"/>
+    <path d="M 185 229 L 225 229" stroke="#6366f1" class="flow-path"/>
+    <path d="M 185 325 L 225 325" stroke="#10b981" class="flow-path"/>
+    <path d="M 185 421 L 225 421" stroke="#f59e0b" class="flow-path"/>
+  </g>
+
+  <!-- ==================== COLUMN 2: ENCODER MLPs ==================== -->
+  <g transform="translate(225, 78)">
+    <text x="0" y="0" fill="#94a3b8" font-size="11" font-weight="700" letter-spacing="0.8">2. DEDICATED MLPs</text>
+
+    <!-- Encoder 1 -->
+    <g transform="translate(0, 18)">
+      <rect width="140" height="74" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+      <text x="12" y="23" fill="#f1f5f9" font-size="11.5" font-weight="700">MLP (mRNA)</text>
+      <text x="12" y="39" fill="#94a3b8" font-size="10">Linear(3217, 256)</text>
+      <text x="12" y="52" fill="#64748b" font-size="10">BatchNorm + ReLU</text>
+      <text x="12" y="66" fill="#60a5fa" font-size="9.5" font-weight="600" class="mono">&#8594; 128-D Token</text>
+    </g>
+
+    <!-- Encoder 2 -->
+    <g transform="translate(0, 114)">
+      <rect width="140" height="74" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+      <text x="12" y="23" fill="#f1f5f9" font-size="11.5" font-weight="700">MLP (miRNA)</text>
+      <text x="12" y="39" fill="#94a3b8" font-size="10">Linear(383, 256)</text>
+      <text x="12" y="52" fill="#64748b" font-size="10">BatchNorm + ReLU</text>
+      <text x="12" y="66" fill="#818cf8" font-size="9.5" font-weight="600" class="mono">&#8594; 128-D Token</text>
+    </g>
+
+    <!-- Encoder 3 -->
+    <g transform="translate(0, 210)">
+      <rect width="140" height="74" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+      <text x="12" y="23" fill="#f1f5f9" font-size="11.5" font-weight="700">MLP (CNV)</text>
+      <text x="12" y="39" fill="#94a3b8" font-size="10">Linear(3105, 256)</text>
+      <text x="12" y="52" fill="#64748b" font-size="10">BatchNorm + ReLU</text>
+      <text x="12" y="66" fill="#34d399" font-size="9.5" font-weight="600" class="mono">&#8594; 128-D Token</text>
+    </g>
+
+    <!-- Encoder 4 -->
+    <g transform="translate(0, 306)">
+      <rect width="140" height="74" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+      <text x="12" y="23" fill="#f1f5f9" font-size="11.5" font-weight="700">MLP (Methy)</text>
+      <text x="12" y="39" fill="#94a3b8" font-size="10">Linear(3139, 256)</text>
+      <text x="12" y="52" fill="#64748b" font-size="10">BatchNorm + ReLU</text>
+      <text x="12" y="66" fill="#fbbf24" font-size="9.5" font-weight="600" class="mono">&#8594; 128-D Token</text>
+    </g>
+  </g>
+
+  <!-- Connectors: Stage 2 -> Stage 3 -->
+  <g fill="none" stroke-width="1.6">
+    <path d="M 365 133 L 415 133" stroke="#3b82f6" class="flow-path"/>
+    <path d="M 365 229 L 415 229" stroke="#6366f1" class="flow-path"/>
+    <path d="M 365 325 L 415 325" stroke="#10b981" class="flow-path"/>
+    <path d="M 365 421 L 415 421" stroke="#f59e0b" class="flow-path"/>
+  </g>
+
+  <!-- ==================== COLUMN 3: RESILIENCE GATE ==================== -->
+  <g transform="translate(415, 78)">
+    <text x="0" y="0" fill="#94a3b8" font-size="11" font-weight="700" letter-spacing="0.8">3. RESILIENCE GATE</text>
+
+    <!-- Main Container Box -->
+    <rect x="0" y="18" width="165" height="362" rx="10" fill="#131b2e" stroke="#334155" stroke-width="1.2"/>
+    <rect x="0" y="18" width="165" height="26" rx="10" fill="#1e293b"/>
+    <text x="12" y="35" fill="#cbd5e1" font-size="10.5" font-weight="700">DROPOUT MASK &amp; IMPUTE</text>
+
+    <!-- Item 1: mRNA Present -->
+    <g transform="translate(14, 58)">
+      <circle cx="5" cy="5" r="4" fill="#10b981"/>
+      <text x="16" y="9" fill="#f8fafc" font-size="11" font-weight="600">mRNA: Present</text>
+      <text x="16" y="22" fill="#64748b" font-size="9" class="mono">m₁ = 1 &#8594; Observed Token</text>
+    </g>
+
+    <!-- Item 2: miRNA Present -->
+    <g transform="translate(14, 134)">
+      <circle cx="5" cy="5" r="4" fill="#10b981"/>
+      <text x="16" y="9" fill="#f8fafc" font-size="11" font-weight="600">miRNA: Present</text>
+      <text x="16" y="22" fill="#64748b" font-size="9" class="mono">m₂ = 1 &#8594; Observed Token</text>
+    </g>
+
+    <!-- Item 3: CNV Missing (Muted Crimson Alert) -->
+    <g transform="translate(12, 206)" class="missing-soft-pulse">
+      <rect x="-2" y="-2" width="144" height="48" rx="6" fill="#3b1114" stroke="#991b1b" stroke-width="1.2"/>
+      <circle cx="8" cy="8" r="4" fill="#ef4444"/>
+      <text x="20" y="11" fill="#fca5a5" font-size="11" font-weight="700">CNV: Missing!</text>
+      <text x="20" y="25" fill="#fecaca" font-size="9.5" font-weight="600" class="mono">m₃ = 0 &#8594; e_default</text>
+      <text x="20" y="38" fill="#f87171" font-size="8.5">+ Learned Vector Injected</text>
+    </g>
+
+    <!-- Item 4: Methy Present -->
+    <g transform="translate(14, 304)">
+      <circle cx="5" cy="5" r="4" fill="#10b981"/>
+      <text x="16" y="9" fill="#f8fafc" font-size="11" font-weight="600">Methy: Present</text>
+      <text x="16" y="22" fill="#64748b" font-size="9" class="mono">m₄ = 1 &#8594; Observed Token</text>
+    </g>
+  </g>
+
+  <!-- Connectors: Stage 3 -> Stage 4 -->
+  <g fill="none" stroke-width="1.6">
+    <path d="M 580 133 L 630 148" stroke="#3b82f6" class="flow-path"/>
+    <path d="M 580 229 L 630 206" stroke="#6366f1" class="flow-path"/>
+    <path d="M 580 325 L 630 264" stroke="#ef4444" stroke-dasharray="4 4" class="flow-path-fast"/>
+    <path d="M 580 421 L 630 322" stroke="#f59e0b" class="flow-path"/>
+  </g>
+
+  <!-- ==================== COLUMN 4: CROSS-ATTENTION TRANSFORMER ==================== -->
+  <g transform="translate(630, 78)">
+    <text x="0" y="0" fill="#94a3b8" font-size="11" font-weight="700" letter-spacing="0.8">4. CROSS-ATTENTION</text>
+
+    <!-- Container Box -->
+    <rect x="0" y="18" width="150" height="362" rx="10" fill="#1e2238" stroke="#475569" stroke-width="1.2"/>
+
+    <rect x="12" y="32" width="126" height="24" rx="4" fill="#2d3748" stroke="#4a5568" stroke-width="1"/>
+    <text x="22" y="48" fill="#e2e8f0" font-size="10.5" font-weight="700">Multi-Head Attn</text>
+
+    <!-- Modality Tokens Interconnect Area -->
+    <g transform="translate(25, 70)">
+      <!-- 4 Token Nodes -->
+      <circle cx="20" cy="20" r="11" fill="#1e3a8a" stroke="#3b82f6" stroke-width="1.2"/>
+      <text x="14" y="24" fill="#ffffff" font-size="9.5" font-weight="700">T1</text>
+
+      <circle cx="80" cy="20" r="11" fill="#312e81" stroke="#6366f1" stroke-width="1.2"/>
+      <text x="74" y="24" fill="#ffffff" font-size="9.5" font-weight="700">T2</text>
+
+      <circle cx="20" cy="76" r="11" fill="#7f1d1d" stroke="#ef4444" stroke-width="1.2"/>
+      <text x="14" y="80" fill="#ffffff" font-size="9.5" font-weight="700">T3</text>
+
+      <circle cx="80" cy="76" r="11" fill="#78350f" stroke="#f59e0b" stroke-width="1.2"/>
+      <text x="74" y="80" fill="#ffffff" font-size="9.5" font-weight="700">T4</text>
+
+      <!-- Subdued Inter-modality Links -->
+      <line x1="28" y1="20" x2="72" y2="20" stroke="#94a3b8" class="attn-link"/>
+      <line x1="20" y1="28" x2="20" y2="68" stroke="#94a3b8" class="attn-link"/>
+      <line x1="80" y1="28" x2="80" y2="68" stroke="#94a3b8" class="attn-link"/>
+      <line x1="28" y1="76" x2="72" y2="76" stroke="#94a3b8" class="attn-link"/>
+      <line x1="27" y1="27" x2="73" y2="69" stroke="#94a3b8" class="attn-link"/>
+      <line x1="73" y1="27" x2="27" y2="69" stroke="#94a3b8" class="attn-link"/>
+    </g>
+
+    <!-- Sublayers in Transformer -->
+    <g transform="translate(12, 185)">
+      <rect width="126" height="26" rx="4" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+      <text x="14" y="17" fill="#cbd5e1" font-size="9.5" font-weight="600">Add &amp; LayerNorm</text>
+    </g>
+
+    <g transform="translate(12, 220)">
+      <rect width="126" height="26" rx="4" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+      <text x="14" y="17" fill="#cbd5e1" font-size="9.5" font-weight="600">FeedForward (FFN)</text>
+    </g>
+
+    <g transform="translate(12, 255)">
+      <rect width="126" height="26" rx="4" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+      <text x="14" y="17" fill="#cbd5e1" font-size="9.5" font-weight="600">Add &amp; LayerNorm</text>
+    </g>
+
+    <g transform="translate(12, 298)">
+      <rect width="126" height="38" rx="5" fill="#2d3748" stroke="#4a5568" stroke-width="1"/>
+      <text x="8" y="16" fill="#f8fafc" font-size="9.5" font-weight="700">Masked Mean Pooling</text>
+      <text x="8" y="30" fill="#cbd5e1" font-size="9" class="mono">&#8594; h_fused in R^128</text>
+    </g>
+  </g>
+
+  <!-- Connectors: Stage 4 -> Stage 5 -->
+  <g fill="none" stroke-width="1.8">
+    <path d="M 780 259 L 830 259" stroke="#94a3b8" class="flow-path"/>
+  </g>
+
+  <!-- ==================== COLUMN 5: DIAGNOSIS & SUBTYPES ==================== -->
+  <g transform="translate(830, 78)">
+    <text x="0" y="0" fill="#94a3b8" font-size="11" font-weight="700" letter-spacing="0.8">5. DIAGNOSIS</text>
+
+    <!-- Classifier Head Box -->
+    <rect x="0" y="18" width="195" height="362" rx="10" fill="#0f172a" stroke="#334155" stroke-width="1.2"/>
+    <rect x="0" y="18" width="195" height="28" rx="10" fill="#1e293b"/>
+    <text x="14" y="36" fill="#ffffff" font-size="11.5" font-weight="700">4-WAY CLASSIFIER HEAD</text>
+
+    <!-- 1. BRCA (Top predicted class) -->
+    <g transform="translate(14, 60)">
+      <rect width="167" height="58" rx="6" fill="#172554" stroke="#2563eb" stroke-width="1.5"/>
+      <circle cx="15" cy="18" r="5" fill="#3b82f6"/>
+      <text x="28" y="22" fill="#ffffff" font-size="12.5" font-weight="800">BRCA (Breast)</text>
+      <text x="28" y="41" fill="#93c5fd" font-size="9.5" class="mono">P = 99.4% | Sens: 1.00</text>
+      <rect x="128" y="10" width="30" height="16" rx="3" fill="#2563eb"/>
+      <text x="133" y="22" fill="#ffffff" font-size="9" font-weight="700">TOP</text>
+    </g>
+
+    <!-- 2. HNSC -->
+    <g transform="translate(14, 130)">
+      <rect width="167" height="50" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+      <circle cx="15" cy="18" r="4" fill="#64748b"/>
+      <text x="28" y="22" fill="#cbd5e1" font-size="11.5" font-weight="700">HNSC (Head/Neck)</text>
+      <text x="28" y="37" fill="#94a3b8" font-size="9.5" class="mono">Sens: 0.974</text>
+    </g>
+
+    <!-- 3. LGG -->
+    <g transform="translate(14, 192)">
+      <rect width="167" height="50" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+      <circle cx="15" cy="18" r="4" fill="#64748b"/>
+      <text x="28" y="22" fill="#cbd5e1" font-size="11.5" font-weight="700">LGG (Brain Glioma)</text>
+      <text x="28" y="37" fill="#94a3b8" font-size="9.5" class="mono">Sens: 1.000</text>
+    </g>
+
+    <!-- 4. THCA -->
+    <g transform="translate(14, 254)">
+      <rect width="167" height="50" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+      <circle cx="15" cy="18" r="4" fill="#64748b"/>
+      <text x="28" y="22" fill="#cbd5e1" font-size="11.5" font-weight="700">THCA (Thyroid)</text>
+      <text x="28" y="37" fill="#94a3b8" font-size="9.5" class="mono">Sens: 1.000</text>
+    </g>
+
+    <!-- Bottom Metric Card -->
+    <g transform="translate(14, 318)">
+      <rect width="167" height="46" rx="5" fill="#14261d" stroke="#059669" stroke-width="1"/>
+      <text x="10" y="18" fill="#a7f3d0" font-size="10" font-weight="700">TEST ACCURACY: 99.41%</text>
+      <text x="10" y="34" fill="#d1fae5" font-size="9" class="mono">338/340 Correct | AUC: 0.9996</text>
+    </g>
+  </g>
+
+  <!-- Bottom Legend Bar -->
+  <g transform="translate(35, 478)">
+    <rect width="990" height="50" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+
+    <g transform="translate(20, 18)">
+      <circle cx="6" cy="6" r="4.5" fill="#10b981"/>
+      <text x="18" y="10" fill="#e2e8f0" font-size="11" font-weight="600">Active Modality Stream</text>
+    </g>
+
+    <g transform="translate(220, 18)">
+      <circle cx="6" cy="6" r="4.5" fill="#ef4444"/>
+      <text x="18" y="10" fill="#e2e8f0" font-size="11" font-weight="600">Learned Default Token (Missing Stream)</text>
+    </g>
+
+    <g transform="translate(560, 18)">
+      <circle cx="6" cy="6" r="4.5" fill="#94a3b8"/>
+      <text x="18" y="10" fill="#e2e8f0" font-size="11" font-weight="600">Cross-Modal Attention Exchange</text>
+    </g>
+
+    <g transform="translate(850, 12)">
+      <rect width="120" height="26" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+      <text x="12" y="17" fill="#cbd5e1" font-size="9.5" font-weight="700">ROBUST BY DESIGN</text>
+    </g>
+  </g>
+</svg>

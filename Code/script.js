@@ -122,6 +122,7 @@
      Scroll Progress Indicator & Sticky Navigation Dynamics
      ========================================================================== */
   const progressBar = document.getElementById('scroll-progress');
+  const navWrapper = document.getElementById('nav-wrapper') || document.querySelector('.nav-wrapper');
   const navbar = document.getElementById('navbar');
   const navIndicator = document.querySelector('.nav-indicator');
   const navLinks = document.querySelectorAll('nav .nav-links a.nav-link');
@@ -137,15 +138,17 @@
       progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
     }
 
-    // Toggle Scrolled Class for Compact Navbar
+    // Toggle Scrolled Class for Full-Width Blurred Navbar Line
+    const isScrolled = scrollY > 15;
+    if (navWrapper) {
+      navWrapper.classList.toggle('scrolled', isScrolled);
+    }
     if (navbar) {
-      navbar.classList.toggle('scrolled', scrollY > 30);
+      navbar.classList.toggle('scrolled', isScrolled);
     }
   }
 
-  window.addEventListener('scroll', () => {
-    window.requestAnimationFrame(updateScrollState);
-  }, { passive: true });
+  window.addEventListener('scroll', updateScrollState, { passive: true });
   updateScrollState();
 
   /* ==========================================================================
@@ -211,18 +214,50 @@
     sections.forEach((sec) => sectionObserver.observe(sec));
   }
 
-  // Smooth Section Jump for Navigation Links
+  // Precise & Smooth Section Jump for Navigation Links
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');
-      if (targetId === '#') return;
+      if (targetId === '#' || targetId === '') return;
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
         e.preventDefault();
-        targetElement.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
+
+        if (targetId === '#hero') {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+          closeMobileMenu();
+          return;
+        }
+
+        // Calculate exact offset so the section heading or content aligns neatly below the navbar
+        const navHeight = navWrapper ? navWrapper.getBoundingClientRect().height : 60;
+        const heading = targetElement.querySelector('h1, h2, .section-tag') || targetElement;
+        const headingTop = heading.getBoundingClientRect().top + window.pageYOffset;
+        const scrollTarget = Math.max(0, Math.round(headingTop - navHeight - 16));
+
+        window.scrollTo({
+          top: scrollTarget,
+          behavior: 'smooth'
         });
+
+        // Sync active state immediately on click
+        navLinks.forEach((link) => {
+          const href = link.getAttribute('href');
+          const isMatch = href === targetId;
+          link.classList.toggle('active', isMatch);
+          if (isMatch) moveNavIndicator(link);
+        });
+
+        document.querySelectorAll('.mobile-drawer .mobile-link').forEach((mLink) => {
+          mLink.classList.toggle('active', mLink.getAttribute('href') === targetId);
+        });
+
+        if (history.pushState) {
+          history.pushState(null, null, targetId);
+        }
 
         // Close mobile drawer if open
         closeMobileMenu();
@@ -320,14 +355,24 @@
         }
       });
     }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -40px 0px'
+      threshold: 0.01,
+      rootMargin: '80px 0px 80px 0px'
     });
 
     revealElements.forEach((el, index) => {
-      el.style.transitionDelay = `${(index % 4) * 75}ms`;
+      el.style.transitionDelay = `${(index % 4) * 60}ms`;
       revealObserver.observe(el);
     });
+
+    // Initial check to reveal elements already in view
+    setTimeout(() => {
+      revealElements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight + 100) {
+          el.classList.add('in');
+        }
+      });
+    }, 100);
   }
 
   /* ==========================================================================
@@ -552,14 +597,14 @@
       clearTimeout(timeoutId);
       if (res.ok) {
         isApiOnline = true;
-        setApiPillState(true, '🟢 Live Model Online');
+        setApiPillState(true, 'Live Model Online');
         return true;
       }
     } catch (e) {
       // Offline fallback
     }
     isApiOnline = false;
-    setApiPillState(false, '⚡ Offline Benchmark Mode');
+    setApiPillState(false, 'Offline Benchmark Mode');
     return false;
   }
 
@@ -609,13 +654,13 @@
             biomarkers: data.biomarkers,
             activeCount: activeCount
           });
-          setApiPillState(true, `🟢 Live Model (${data.latency_ms}ms)`);
+          setApiPillState(true, `Live Model (${data.latency_ms}ms)`);
           return;
         }
       } catch (err) {
         console.warn('Live API request failed, switching to calibrated offline fallback.');
         isApiOnline = false;
-        setApiPillState(false, '⚡ Offline Benchmark Mode');
+        setApiPillState(false, 'Offline Benchmark Mode');
       }
     }
 
@@ -844,9 +889,596 @@
     });
   }
 
+  /* ==========================================================================
+     Clinical Prediction Studio Controller (File Upload, Validation & Inference)
+     ========================================================================== */
+  const tabStudioBtn = document.getElementById('tab-studio-btn');
+  const tabTopologyBtn = document.getElementById('tab-topology-btn');
+  const studioPanel = document.getElementById('studio-panel');
+  const topologyPanel = document.getElementById('topology-panel');
+
+  const MODALITIES = ['mRNA', 'miRNA', 'CNV', 'Methy'];
+  const MODALITY_DIMS = { mRNA: 3217, miRNA: 383, CNV: 3105, Methy: 3139 };
+  const PATIENT_PREFIX_MAP = {
+    0: 'BRCA_Patient101',
+    1: 'HNSC_Patient142',
+    6: 'LGG_Patient188',
+    2: 'THCA_Patient215',
+    5: 'BRCA_Patient101'
+  };
+
+  let activeStudioPatientIdx = 0;
+  const selectedStudioFiles = { mRNA: null, miRNA: null, CNV: null, Methy: null };
+
+  // Tab Switching
+  if (tabStudioBtn && tabTopologyBtn && studioPanel && topologyPanel) {
+    tabStudioBtn.addEventListener('click', () => {
+      tabStudioBtn.classList.add('active');
+      tabTopologyBtn.classList.remove('active');
+      studioPanel.style.display = 'block';
+      topologyPanel.style.display = 'none';
+    });
+
+    tabTopologyBtn.addEventListener('click', () => {
+      tabTopologyBtn.classList.add('active');
+      tabStudioBtn.classList.remove('active');
+      studioPanel.style.display = 'none';
+      topologyPanel.style.display = 'block';
+    });
+  }
+
+  // Modality Checkbox Changes & UI Sync
+  MODALITIES.forEach((mod) => {
+    const chk = document.getElementById(`check-mod-${mod.toLowerCase()}`);
+    const card = document.getElementById(`card-mod-${mod.toLowerCase()}`);
+    const badge = document.getElementById(`badge-mod-${mod.toLowerCase()}`);
+
+    if (chk && card && badge) {
+      chk.addEventListener('change', () => {
+        const isPresent = chk.checked;
+        card.classList.toggle('missing', !isPresent);
+        if (!isPresent) {
+          badge.className = 'mod-status-badge status-missing';
+          badge.textContent = 'Missing (Masked)';
+        } else {
+          if (selectedStudioFiles[mod]) {
+            badge.className = 'mod-status-badge status-ready';
+            badge.textContent = `File Ready`;
+          } else {
+            badge.className = 'mod-status-badge status-awaiting';
+            badge.textContent = 'Awaiting Input';
+          }
+        }
+      });
+    }
+  });
+
+  // Drag and Drop & File Upload Handlers
+  MODALITIES.forEach((mod) => {
+    const modLower = mod.toLowerCase();
+    const dropzone = document.getElementById(`dropzone-${modLower}`);
+    const fileInput = document.getElementById(`file-input-${modLower}`);
+    const previewPill = document.getElementById(`preview-pill-${modLower}`);
+    const filenameSpan = previewPill ? previewPill.querySelector('.pill-name-text') : null;
+    const filesizeSpan = document.getElementById(`filesize-${modLower}`);
+    const removeBtn = previewPill ? previewPill.querySelector('.file-remove-btn') : null;
+    const badge = document.getElementById(`badge-mod-${modLower}`);
+    const card = document.getElementById(`card-mod-${modLower}`);
+
+    function formatBytes(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+      return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+    }
+
+    function setFile(file) {
+      if (!file) return;
+      // Validate file extension
+      const ext = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
+      if (!['.csv', '.tsv', '.txt'].includes(ext)) {
+        showStudioAlert(`Unsupported file format '${ext}' for ${mod}. Please upload a .csv, .tsv, or .txt file.`, 'danger');
+        return;
+      }
+      // Validate file size (< 25MB)
+      if (file.size > 25 * 1024 * 1024) {
+        showStudioAlert(`File '${file.name}' exceeds maximum allowed size of 25 MB.`, 'danger');
+        return;
+      }
+
+      selectedStudioFiles[mod] = file;
+
+      // Update UI
+      if (filenameSpan) filenameSpan.textContent = file.name;
+      if (filesizeSpan) filesizeSpan.textContent = formatBytes(file.size);
+      if (previewPill) previewPill.style.display = 'flex';
+      if (dropzone) dropzone.style.display = 'none';
+
+      if (badge) {
+        badge.className = 'mod-status-badge status-ready';
+        badge.textContent = 'File Ready';
+      }
+      clearStudioAlert();
+    }
+
+    function removeFile() {
+      selectedStudioFiles[mod] = null;
+      if (fileInput) fileInput.value = '';
+      if (previewPill) previewPill.style.display = 'none';
+      if (dropzone) dropzone.style.display = 'flex';
+      if (badge) {
+        const chk = document.getElementById(`check-mod-${modLower}`);
+        if (chk && !chk.checked) {
+          badge.className = 'mod-status-badge status-missing';
+          badge.textContent = 'Missing (Masked)';
+        } else {
+          badge.className = 'mod-status-badge status-awaiting';
+          badge.textContent = 'Awaiting Input';
+        }
+      }
+    }
+
+    if (dropzone && fileInput) {
+      dropzone.addEventListener('click', () => fileInput.click());
+
+      fileInput.addEventListener('change', () => {
+        if (fileInput.files && fileInput.files[0]) {
+          setFile(fileInput.files[0]);
+        }
+      });
+
+      dropzone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropzone.classList.add('dropzone-dragover');
+      });
+
+      dropzone.addEventListener('dragleave', () => {
+        dropzone.classList.remove('dropzone-dragover');
+      });
+
+      dropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropzone.classList.remove('dropzone-dragover');
+        if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) {
+          setFile(e.dataTransfer.files[0]);
+        }
+      });
+    }
+
+    if (removeBtn) {
+      removeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        removeFile();
+      });
+    }
+
+    // Load Demo Sample for this Modality
+    const loadSampleBtn = card ? card.querySelector('[data-load-mod-sample]') : null;
+    if (loadSampleBtn) {
+      loadSampleBtn.addEventListener('click', async () => {
+        const prefix = PATIENT_PREFIX_MAP[activeStudioPatientIdx] || 'BRCA_Patient101';
+        const sampleUrl = `/sample_inputs/${prefix}_${mod}.csv`;
+        try {
+          loadSampleBtn.textContent = 'Loading...';
+          const res = await fetch(sampleUrl);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const blob = await res.blob();
+          const file = new File([blob], `${prefix}_${mod}.csv`, { type: 'text/csv' });
+          setFile(file);
+          loadSampleBtn.innerHTML = `
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+            Load Sample
+          `;
+        } catch (err) {
+          loadSampleBtn.textContent = 'Load Sample';
+          showStudioAlert(`Failed to load demo file: ${err.message}`, 'warning');
+        }
+      });
+    }
+  });
+
+  // Manual Vector Accordion Toggle
+  const manualToggle = document.getElementById('manual-accordion-toggle');
+  const manualAccordion = document.getElementById('manual-vector-accordion');
+  const accordionArrow = document.getElementById('accordion-arrow-icon');
+  if (manualToggle && manualAccordion) {
+    manualToggle.addEventListener('click', () => {
+      const isOpen = manualAccordion.classList.toggle('open');
+      if (accordionArrow) accordionArrow.textContent = isOpen ? '▲' : '▼';
+    });
+  }
+
+  // Quick Test Cohort Demonstrations & Presets
+  const demoPatientBtns = document.querySelectorAll('[data-load-patient]');
+  const demoPresetBtns = document.querySelectorAll('[data-load-preset]');
+
+  demoPatientBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      demoPatientBtns.forEach((b) => b.classList.remove('active'));
+      demoPresetBtns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      activeStudioPatientIdx = parseInt(btn.getAttribute('data-load-patient'), 10);
+      // Ensure all 4 modalities are checked for complete patient case
+      MODALITIES.forEach((m) => {
+        const chk = document.getElementById(`check-mod-${m.toLowerCase()}`);
+        if (chk && !chk.checked) {
+          chk.checked = true;
+          chk.dispatchEvent(new Event('change'));
+        }
+      });
+
+      // Clear any custom uploaded files so it evaluates this patient case
+      resetStudioFiles();
+
+      const sampleIdInput = document.getElementById('studio-sample-id');
+      if (sampleIdInput) {
+        sampleIdInput.value = btn.textContent.trim();
+      }
+
+      // Execute live prediction immediately for demonstration
+      runStudioPrediction();
+    });
+  });
+
+  demoPresetBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      demoPatientBtns.forEach((b) => b.classList.remove('active'));
+      demoPresetBtns.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const preset = btn.getAttribute('data-load-preset');
+      if (preset === 'no-mrna') {
+        const chkMrna = document.getElementById('check-mod-mrna');
+        if (chkMrna) { chkMrna.checked = false; chkMrna.dispatchEvent(new Event('change')); }
+        ['mirna', 'cnv', 'methy'].forEach((m) => {
+          const c = document.getElementById(`check-mod-${m}`);
+          if (c && !c.checked) { c.checked = true; c.dispatchEvent(new Event('change')); }
+        });
+      } else if (preset === 'cnv-only') {
+        ['mrna', 'mirna', 'methy'].forEach((m) => {
+          const c = document.getElementById(`check-mod-${m}`);
+          if (c && c.checked) { c.checked = false; c.dispatchEvent(new Event('change')); }
+        });
+        const chkCnv = document.getElementById('check-mod-cnv');
+        if (chkCnv && !chkCnv.checked) { chkCnv.checked = true; chkCnv.dispatchEvent(new Event('change')); }
+      }
+
+      resetStudioFiles();
+      runStudioPrediction();
+    });
+  });
+
+  function resetStudioFiles() {
+    MODALITIES.forEach((mod) => {
+      selectedStudioFiles[mod] = null;
+      const fileInput = document.getElementById(`file-input-${mod.toLowerCase()}`);
+      if (fileInput) fileInput.value = '';
+      const previewPill = document.getElementById(`preview-pill-${mod.toLowerCase()}`);
+      if (previewPill) previewPill.style.display = 'none';
+      const dropzone = document.getElementById(`dropzone-${mod.toLowerCase()}`);
+      if (dropzone) dropzone.style.display = 'flex';
+      const badge = document.getElementById(`badge-mod-${mod.toLowerCase()}`);
+      const chk = document.getElementById(`check-mod-${mod.toLowerCase()}`);
+      if (badge && chk) {
+        badge.className = chk.checked ? 'mod-status-badge status-awaiting' : 'mod-status-badge status-missing';
+        badge.textContent = chk.checked ? 'Awaiting Input' : 'Missing (Masked)';
+      }
+    });
+  }
+
+  // Alerts
+  const studioAlertBox = document.getElementById('studio-alert-box');
+  function showStudioAlert(message, type = 'danger') {
+    if (!studioAlertBox) return;
+    studioAlertBox.textContent = message;
+    studioAlertBox.className = `studio-alert-box ${type}`;
+    studioAlertBox.style.display = 'block';
+  }
+
+  function clearStudioAlert() {
+    if (!studioAlertBox) return;
+    studioAlertBox.style.display = 'none';
+    studioAlertBox.textContent = '';
+  }
+
+  // Prediction Execution Logic
+  const btnStudioPredict = document.getElementById('btn-studio-predict');
+  const btnPredictLabel = document.getElementById('btn-predict-label');
+  const studioPredictSpinner = document.getElementById('studio-predict-spinner');
+  const studioResultsPanel = document.getElementById('studio-results-panel');
+
+  function setPredictLoading(isLoading) {
+    if (!btnStudioPredict) return;
+    btnStudioPredict.disabled = isLoading;
+    btnStudioPredict.classList.toggle('loading', isLoading);
+    if (btnPredictLabel) {
+      btnPredictLabel.textContent = isLoading ? 'Executing PyTorch Forward Pass...' : 'Run Cancer Prediction';
+    }
+  }
+
+  async function runStudioPrediction() {
+    clearStudioAlert();
+
+    // 1. Gather active modalities
+    const activeFlags = MODALITIES.map((m) => {
+      const chk = document.getElementById(`check-mod-${m.toLowerCase()}`);
+      return chk && chk.checked ? 1 : 0;
+    });
+
+    const activeCount = activeFlags.filter((v) => v === 1).length;
+    if (activeCount === 0) {
+      showStudioAlert('Input Validation Error: At least one omic modality must be selected to compute cancer prediction.', 'danger');
+      if (studioResultsPanel) studioResultsPanel.classList.remove('visible');
+      return;
+    }
+
+    // Strategy
+    const stratInput = document.querySelector('input[name="studio-strategy"]:checked');
+    const strategy = stratInput ? stratInput.value : 's2';
+
+    // Sample ID
+    const sampleIdInput = document.getElementById('studio-sample-id');
+    const sampleId = (sampleIdInput && sampleIdInput.value.trim()) || `Patient-Sample-${activeStudioPatientIdx + 101}`;
+
+    setPredictLoading(true);
+
+    try {
+      // Check if files were provided
+      const hasUploadedFiles = MODALITIES.some((m, idx) => activeFlags[idx] === 1 && selectedStudioFiles[m] !== null);
+
+      // Check manual textareas
+      let manualPayload = null;
+      MODALITIES.forEach((m, idx) => {
+        if (activeFlags[idx] === 1 && !selectedStudioFiles[m]) {
+          const txt = document.getElementById(`manual-${m.toLowerCase()}`);
+          if (txt && txt.value.trim().length > 0) {
+            if (!manualPayload) manualPayload = {};
+            const rawVal = txt.value.trim();
+            if (rawVal.startsWith('{')) {
+              try {
+                manualPayload[m] = JSON.parse(rawVal);
+              } catch (e) {
+                throw new Error(`Invalid JSON syntax in manual ${m} input: ${e.message}`);
+              }
+            } else {
+              const nums = rawVal.split(',').map((s) => parseFloat(s.trim()));
+              if (nums.some(isNaN)) {
+                throw new Error(`Non-numeric value detected in manual ${m} input vector.`);
+              }
+              manualPayload[m] = nums;
+            }
+          }
+        }
+      });
+
+      let responseData = null;
+
+      // Path A: File Upload (multipart/form-data)
+      if (hasUploadedFiles) {
+        const formData = new FormData();
+        MODALITIES.forEach((m, idx) => {
+          if (activeFlags[idx] === 1) {
+            if (selectedStudioFiles[m]) {
+              formData.append(`file_${m}`, selectedStudioFiles[m]);
+            } else {
+              // Active without file
+              throw new Error(`Modality '${m}' is selected as active, but no CSV file was uploaded. Please upload a file, paste manual vector, or uncheck '${m}'.`);
+            }
+          }
+        });
+
+        formData.append('modalities', JSON.stringify(MODALITIES.filter((_, idx) => activeFlags[idx] === 1)));
+        formData.append('strategy', strategy);
+        formData.append('sample_id', sampleId);
+
+        const res = await fetch(`${API_BASE}/api/predict/upload`, {
+          method: 'POST',
+          body: formData
+        });
+
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({ detail: `HTTP ${res.status} Error` }));
+          throw new Error(errData.detail || 'File upload prediction failed.');
+        }
+        responseData = await res.json();
+      }
+      // Path B: Manual Feature Entry (JSON)
+      else if (manualPayload && Object.keys(manualPayload).length > 0) {
+        const res = await fetch(`${API_BASE}/api/predict`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            modalities: activeFlags,
+            inputs: manualPayload,
+            strategy: strategy
+          })
+        });
+
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({ detail: `HTTP ${res.status} Error` }));
+          throw new Error(errData.detail || 'Manual vector prediction failed.');
+        }
+        responseData = await res.json();
+      }
+      // Path C: Test Cohort Case Real Inference
+      else {
+        const res = await fetch(`${API_BASE}/api/predict`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            modalities: activeFlags,
+            patient_idx: activeStudioPatientIdx,
+            strategy: strategy
+          })
+        });
+
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({ detail: `HTTP ${res.status} Error` }));
+          throw new Error(errData.detail || 'Inference pipeline failed.');
+        }
+        responseData = await res.json();
+      }
+
+      // Render Results Panel
+      renderStudioResults(responseData);
+      setApiPillState(true, `Live Model (${responseData.latency_ms}ms)`);
+
+    } catch (err) {
+      showStudioAlert(err.message, 'danger');
+      if (studioResultsPanel) studioResultsPanel.classList.remove('visible');
+    } finally {
+      setPredictLoading(false);
+    }
+  }
+
+  function renderStudioResults(data) {
+    if (!studioResultsPanel) return;
+
+    // Header Meta
+    const condBadge = document.getElementById('studio-condition-badge');
+    if (condBadge) condBadge.textContent = `${data.condition_id}: ${data.condition_description}`;
+
+    const ckptBadge = document.getElementById('studio-checkpoint-badge');
+    if (ckptBadge) ckptBadge.textContent = `Model: ${data.model_checkpoint}`;
+
+    const latBadge = document.getElementById('studio-latency-badge');
+    if (latBadge) latBadge.textContent = `Inference: ${data.latency_ms} ms`;
+
+    // Malignancy Card
+    const malCode = document.getElementById('studio-malignancy-code');
+    if (malCode) malCode.textContent = data.predicted_class;
+
+    const malName = document.getElementById('studio-malignancy-name');
+    if (malName) malName.textContent = data.class_name;
+
+    const malMeta = document.getElementById('studio-malignancy-meta');
+    if (malMeta) {
+      malMeta.textContent = `Primary Organ: ${data.organ} · Sample: ${data.patient_id} (Ground Truth: ${data.ground_truth})`;
+    }
+
+    const confVal = document.getElementById('studio-confidence-val');
+    if (confVal) confVal.textContent = `${data.confidence_pct}%`;
+
+    // Horizontal Class Probability Bar Chart (BRCA, HNSC, LGG, THCA)
+    const classCodes = ['BRCA', 'HNSC', 'LGG', 'THCA'];
+    classCodes.forEach((code) => {
+      const prob = data.probabilities[code] !== undefined ? data.probabilities[code] : 0.0;
+      const pct = (prob * 100).toFixed(1);
+      const row = document.getElementById(`prob-row-${code}`);
+      const bar = document.getElementById(`prob-bar-${code}`);
+      const valText = document.getElementById(`prob-val-${code}`);
+
+      if (bar) bar.style.width = `${Math.min(100, Math.max(0, pct))}%`;
+      if (valText) valText.textContent = `${pct}%`;
+      if (row) {
+        row.classList.toggle('winner', code === data.predicted_class);
+      }
+    });
+
+    // Modality Breakdown Pills
+    const activePillsContainer = document.getElementById('studio-active-modalities-pills');
+    if (activePillsContainer) {
+      activePillsContainer.innerHTML = '';
+      if (data.active_modalities && data.active_modalities.length > 0) {
+        data.active_modalities.forEach((m) => {
+          const pill = document.createElement('span');
+          pill.className = 'summary-pill active';
+          pill.textContent = `${m} (${MODALITY_DIMS[m] || '—'} features)`;
+          activePillsContainer.appendChild(pill);
+        });
+      } else {
+        activePillsContainer.innerHTML = '<span class="summary-pill missing">None</span>';
+      }
+    }
+
+    const missingPillsContainer = document.getElementById('studio-missing-modalities-pills');
+    if (missingPillsContainer) {
+      missingPillsContainer.innerHTML = '';
+      if (data.missing_modalities && data.missing_modalities.length > 0) {
+        data.missing_modalities.forEach((m) => {
+          const pill = document.createElement('span');
+          pill.className = 'summary-pill missing';
+          pill.textContent = `${m} (Imputed with Learned Token)`;
+          missingPillsContainer.appendChild(pill);
+        });
+      } else {
+        missingPillsContainer.innerHTML = '<span class="summary-pill active">None (Full Complete Data)</span>';
+      }
+    }
+
+    // Cross-Attention Contributions
+    const attnContainer = document.getElementById('studio-attention-pills');
+    if (attnContainer) {
+      attnContainer.innerHTML = '';
+      if (data.modality_contributions) {
+        Object.entries(data.modality_contributions).forEach(([m, val]) => {
+          const pill = document.createElement('span');
+          pill.className = `summary-pill ${val > 0 ? 'active' : 'missing'}`;
+          pill.textContent = `${m}: ${val}%`;
+          attnContainer.appendChild(pill);
+        });
+      }
+    }
+
+    // Biomarkers
+    const bmContainer = document.getElementById('studio-biomarker-tags');
+    if (bmContainer) {
+      bmContainer.innerHTML = '';
+      if (data.biomarkers && data.biomarkers.length > 0) {
+        data.biomarkers.forEach((bm) => {
+          const tag = document.createElement('span');
+          tag.className = 'biomarker-tag';
+          tag.textContent = bm.mod ? `${bm.feature} (${bm.mod})` : `${bm.feature}`;
+          bmContainer.appendChild(tag);
+        });
+      } else {
+        bmContainer.innerHTML = '<span class="biomarker-tag">General Pan-Cancer Genomic Profile</span>';
+      }
+    }
+
+    // Show Panel
+    studioResultsPanel.classList.add('visible');
+    studioResultsPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Button Listeners
+  if (btnStudioPredict) {
+    btnStudioPredict.addEventListener('click', runStudioPrediction);
+  }
+
+  const btnStudioReset = document.getElementById('btn-studio-reset');
+  if (btnStudioReset) {
+    btnStudioReset.addEventListener('click', () => {
+      // Re-check all checkboxes
+      MODALITIES.forEach((m) => {
+        const chk = document.getElementById(`check-mod-${m.toLowerCase()}`);
+        if (chk && !chk.checked) {
+          chk.checked = true;
+          chk.dispatchEvent(new Event('change'));
+        }
+      });
+      resetStudioFiles();
+      // Clear manual textareas
+      ['mrna', 'mirna', 'cnv', 'methy'].forEach((m) => {
+        const txt = document.getElementById(`manual-${m}`);
+        if (txt) txt.value = '';
+      });
+      clearStudioAlert();
+      if (studioResultsPanel) studioResultsPanel.classList.remove('visible');
+    });
+  }
+
+  const btnStudioAnother = document.getElementById('btn-studio-another');
+  if (btnStudioAnother && studioPanel) {
+    btnStudioAnother.addEventListener('click', () => {
+      studioPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
   // Initial Startup Sequence
   checkApiHealth().finally(() => {
     updateDiagnosticUI();
   });
 
 })();
+

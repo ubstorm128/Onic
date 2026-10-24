@@ -1,0 +1,38 @@
+flowchart LR
+    subgraph Inputs ["Input Modalities & Availability"]
+        X1["mRNA (3,217)<br/>M_1 = 1 (Present)"]
+        X2["miRNA (383)<br/>M_2 = 0 (ABSENT)"]
+        X3["CNV (3,105)<br/>M_3 = 1 (Present)"]
+        X4["Methy (3,139)<br/>M_4 = 0 (ABSENT)"]
+    end
+
+    subgraph Substitution ["Token Replacement"]
+        T1["Token 1: z_mRNA + E_1"]
+        T2["Token 2: θ_miRNA + E_2<br/>(Learned Default Token)"]
+        T3["Token 3: z_CNV + E_3"]
+        T4["Token 4: θ_Methy + E_4<br/>(Learned Default Token)"]
+    end
+
+    X1 --> T1
+    X2 -.->|M_2=0 Replaced| T2
+    X3 --> T3
+    X4 -.->|M_4=0 Replaced| T4
+
+    subgraph Fusion ["Inter-Modality Self-Attention"]
+        MHA["Multi-Head Attention (H=4, D=128)<br/>Key Padding Mask M_pad ignores Tokens 2 & 4"]
+        Pool["Mask-Aware Weighted Mean Pooling<br/>h_fused = (z'_1 + z'_3) / 2"]
+    end
+
+    T1 --> MHA
+    T2 -.->|Masked in Attention| MHA
+    T3 --> MHA
+    T4 -.->|Masked in Attention| MHA
+
+    MHA --> Pool
+
+    subgraph Head ["Classification Head"]
+        Clf["Linear(128, 64) -> ReLU -> Dropout -> Linear(64, 4)"]
+        Out["Cancer Probabilities (Softmax)<br/>BRCA, HNSC, LGG, THCA"]
+    end
+
+    Pool --> Clf --> Out

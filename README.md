@@ -252,14 +252,139 @@ python project/scripts/run_baselines.py
 python project/scripts/run_fusion.py
 ```
 
-### 4. Launch the Interactive Web Application
+### 4. Launch the Interactive Web Application & Prediction Studio
 
 ```bash
-# Start the FastAPI inference service
+# Start the FastAPI inference service (serves frontend at http://127.0.0.1:8000)
 python Code/api_server.py
-
-# Open Code/index.html in any modern web browser
 ```
+
+Once running:
+- **Web UI & Prediction Studio:** [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+- **Interactive Swagger API Docs:** [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+- **API Health Check:** [http://127.0.0.1:8000/api/health](http://127.0.0.1:8000/api/health)
+
+### 5. Run Automated Tests
+
+```bash
+# Execute the complete unit and integration test suite (17 passed)
+python -m pytest project/tests/test_api_integration.py project/tests/test_pipeline.py -v
+```
+
+---
+
+## Prediction Studio & API Specification
+
+The integrated **Clinical Prediction Studio** connects the front-end directly to the trained PyTorch `MultimodalCrossAttentionClassifier` (`fusion_s2_dropout_seed_42_best.pt`), enabling real-time multi-cancer classification under arbitrary missing modalities.
+
+### Modality Specifications & Preprocessing Pipeline
+
+| Modality | Features | Preprocessing Artifact | Fitted Normalizer | Raw Values Type |
+| :--- | :---: | :--- | :--- | :--- |
+| **mRNA Expression** | 3,217 | `preprocessor_mRNA.joblib` | `StandardScaler` (z-score) | RNA-seq log2(count + 1) |
+| **miRNA Expression** | 383 | `preprocessor_miRNA.joblib` | `StandardScaler` (z-score) | MicroRNA RPM / log2 |
+| **CNV Profiling** | 3,105 | `preprocessor_CNV.joblib` | `StandardScaler` (z-score) | GISTIC2 segment focal calls |
+| **DNA Methylation** | 3,139 | `preprocessor_Methy.joblib` | `MinMaxScaler` ([0, 1]) | Illumina 450K Beta values |
+
+> [!IMPORTANT]
+> Normalization statistics are strictly loaded from training-fitted artifacts (`.joblib`). The system never refits scalers on incoming inference queries or user data.
+
+### Input Data Formats
+
+1. **Option 1: CSV/TSV File Upload (Recommended for Clinical Profiles)**
+   - Upload single-sample `.csv`, `.tsv`, or `.txt` files for any active modality.
+   - Header row must contain expected feature names (column names aligned automatically).
+   - Alternatively, a 2-column transposed file (`feature_name, value`) is also accepted.
+   - Downloadable CSV templates pre-populated with exact feature names are available via `GET /api/template/{modality}` or in `Code/templates/`.
+
+2. **Option 2: Manual Feature Vector Paste (Advanced)**
+   - Comma-separated list of floating-point values or JSON `{feature_name: value}` map.
+
+3. **Option 3: Verified TCGA Test Cohort Demonstration Cases**
+   - Clickable presets for real held-out patient cases: Patient #101 (BRCA), Patient #142 (HNSC), Patient #188 (LGG), Patient #215 (THCA).
+   - Preset missing-modality stress tests (e.g. C1: Missing mRNA, C12: CNV Only).
+
+### API Endpoints
+
+#### `POST /api/predict/upload`
+Uploads multi-omics `.csv` files for any combination of modalities using `multipart/form-data`.
+- **Form Fields:**
+  - `file_mRNA`: (Optional) `.csv` file for mRNA
+  - `file_miRNA`: (Optional) `.csv` file for miRNA
+  - `file_CNV`: (Optional) `.csv` file for CNV
+  - `file_Methy`: (Optional) `.csv` file for DNA Methylation
+  - `modalities`: JSON array of active modalities, e.g. `["mRNA", "CNV"]`
+  - `strategy`: `"s2"` (Modality Dropout, recommended) or `"s1"` (Complete only)
+  - `sample_id`: (Optional) Patient identifier string
+
+#### `POST /api/predict`
+Submits raw or preprocessed numerical vectors, or specifies a held-out test patient index.
+- **Request Body:**
+```json
+{
+  "modalities": [1, 1, 0, 1],
+  "patient_idx": 0,
+  "strategy": "s2"
+}
+```
+
+#### Sample API Response:
+```json
+{
+  "request_status": "success",
+  "condition_id": "C3",
+  "condition_description": "CNV Missing (mRNA + miRNA + Methy)",
+  "active_modalities": ["mRNA", "miRNA", "Methy"],
+  "missing_modalities": ["CNV"],
+  "predicted_class": "BRCA",
+  "class_name": "Breast Invasive Carcinoma",
+  "organ": "Breast",
+  "confidence_pct": 99.56,
+  "probabilities": {
+    "BRCA": 0.9956,
+    "HNSC": 0.0021,
+    "LGG": 0.0012,
+    "THCA": 0.0011
+  },
+  "status_text": "Robust 3-Omic (CNV Imputed)",
+  "status_class": "success",
+  "modality_contributions": {
+    "mRNA": 35.8,
+    "miRNA": 27.5,
+    "CNV": 0.0,
+    "Methy": 36.7
+  },
+  "biomarkers": [
+    { "feature": "SFRP1", "mod": "mRNA" },
+    { "feature": "C5orf46", "mod": "mRNA" },
+    { "feature": "STAC2", "mod": "mRNA" },
+    { "feature": "MIA", "mod": "mRNA" }
+  ],
+  "model_checkpoint": "fusion_s2_dropout_seed_42_best.pt",
+  "strategy": "s2",
+  "patient_id": "TCGA-AO-A0JJ-01",
+  "ground_truth": "BRCA",
+  "latency_ms": 1.15,
+  "validation_warnings": []
+}
+```
+
+### Supported Modality Combinations
+
+The model supports all 15 non-empty combinations (C0 to C14):
+- **Quad-Modal:** C0 (mRNA + miRNA + CNV + Methy)
+- **Tri-Modal:** C1 (Missing mRNA), C2 (Missing miRNA), C3 (Missing CNV), C4 (Missing Methy)
+- **Dual-Modal:** C5 (CNV + Methy), C6 (miRNA + Methy), C7 (miRNA + CNV), C8 (mRNA + Methy), C9 (mRNA + CNV), C10 (mRNA + miRNA)
+- **Uni-Modal Fallback:** C11 (Methy only), C12 (CNV only), C13 (miRNA only), C14 (mRNA only)
+- **Empty Modalities Rejection:** A request with zero active modalities (`[0, 0, 0, 0]`) is rejected with `HTTP 400 Bad Request`.
+
+### Research Prototype Limitations & Safety Notice
+
+> [!WARNING]
+> This application is a machine-learning research prototype developed exclusively for academic experimentation in multimodal oncogenomics.
+> - **Not a Medical Device:** Predictions, class probability distributions, and biomarker attributions do not constitute medical diagnoses.
+> - **Clinical Decisions:** Under no circumstances should predictions be used to guide patient treatments or medical interventions.
+> - **Missingness Performance:** Confidence and accuracy may vary under high missingness regimes (such as single-stream CNV), where evaluation metrics reflect research benchmarks rather than clinical safety clearances.
 
 ---
 

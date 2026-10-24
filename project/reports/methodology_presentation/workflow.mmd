@@ -1,0 +1,20 @@
+flowchart TD
+    subgraph DataPrep ["Data Preparation & Partitioning"]
+        S1["1. Cohort Selection<br/>N=2,263 TCGA Patients<br/>BRCA, HNSC, LGG, THCA"] --> S2["2. 4 Omics Modalities<br/>mRNA (3217), miRNA (383)<br/>CNV (3105), Methy (3139)"]
+        S2 --> S3["3. Sample Alignment<br/>Verified 1-to-1 Patient Barcodes<br/>Zero Missing Values"]
+        S3 --> S4["4. Train-Only Preprocessing<br/>StandardScaler & MinMaxScaler<br/>Fitted on Train Split ONLY"]
+        S4 --> S5["5. 70/15/15 Stratified Split<br/>Train: 1,584 | Val: 339 | Test: 340<br/>Train ∩ Test = ∅ (Zero Leakage)"]
+    end
+
+    subgraph Modeling ["Architecture & Missingness Handling"]
+        S5 --> S6["6. Missingness Simulation<br/>15 Conditions: C0 to C14<br/>Binary Availability Mask M"]
+        S6 --> S7["7. Modality Encoders<br/>2-Layer MLPs: K -> 256 -> 128<br/>Learned Default Tokens θ & Embeddings E"]
+        S7 --> S8["8. Multi-Head Self-Attention<br/>H=4, D=128 over Modality Tokens<br/>Key Padding Mask M_pad"]
+        S8 --> S9["9. Mask-Aware Pooling & Classifier<br/>Weighted Mean Pooling -> h_fused<br/>Linear(128, 64) -> Linear(64, 4)"]
+    end
+
+    subgraph Evaluation ["Training & Statistical Evaluation"]
+        S9 --> S10["10. Training Strategy Comparison<br/>S1 (Complete, p=0.0) vs S2 (Dropout, p=0.3)<br/>5 Random Seeds [42, 123, 456, 789, 1024]"]
+        S10 --> S11["11. Stress-Testing on Test Set<br/>N=340 Patients across 15 Conditions<br/>Accuracy, Macro-F1, ROC-AUC"]
+        S11 --> S12["12. Paired Statistical Analysis<br/>Paired t-test (df=4), Cohen's d, Wilcoxon<br/>C12 CNV-only: +8.52% gain, p=0.1722"]
+    end
