@@ -18,6 +18,7 @@ import math
 from pathlib import Path
 from collections import Counter, OrderedDict
 from datetime import datetime
+from typing import Any
 
 # ─── Configuration ───────────────────────────────────────────────────────────
 
@@ -100,21 +101,21 @@ def stream_csv_rows(filepath: Path):
 
 # ─── Audit Checks ───────────────────────────────────────────────────────────
 
-def audit_label_file(audit: dict) -> tuple[list[str], list[int]]:
-    """Audit the label file and return (sample_ids_from_labels, labels)."""
+def audit_label_file(audit: dict[str, Any]) -> list[int]:
+    """Audit the label file and return labels."""
     log("Checking label file...")
     
     header = read_csv_header(LABEL_FILE)
     row_count = count_csv_rows(LABEL_FILE)
     
-    audit["label_file"] = {
+    label_info: dict[str, Any] = {
         "path": str(LABEL_FILE),
         "header": header,
         "data_rows": row_count,
         "expected_header": ["Label"],
     }
     
-    labels = []
+    labels: list[int] = []
     with open(LABEL_FILE, "r", newline="") as f:
         reader = csv.reader(f)
         next(reader)  # skip header
@@ -124,9 +125,11 @@ def audit_label_file(audit: dict) -> tuple[list[str], list[int]]:
     unique_labels = sorted(set(labels))
     label_counts = Counter(labels)
     
-    audit["label_file"]["unique_labels"] = unique_labels
-    audit["label_file"]["label_counts"] = dict(sorted(label_counts.items()))
-    audit["label_file"]["total_samples"] = len(labels)
+    label_info["unique_labels"] = unique_labels
+    label_info["label_counts"] = dict(sorted(label_counts.items()))
+    label_info["total_samples"] = len(labels)
+    
+    audit["label_file"] = label_info
     
     log(f"  Label file: {len(labels)} rows, {len(unique_labels)} unique labels")
     log(f"  Labels: {unique_labels}")
@@ -134,7 +137,7 @@ def audit_label_file(audit: dict) -> tuple[list[str], list[int]]:
     return labels
 
 
-def audit_modality_headers(audit: dict) -> dict[str, list[str]]:
+def audit_modality_headers(audit: dict[str, Any]) -> dict[str, list[str]]:
     """Audit headers of all modality files. Return {modality: [sample_ids]}."""
     log("Checking modality file headers...")
     
@@ -168,14 +171,14 @@ def audit_modality_headers(audit: dict) -> dict[str, list[str]]:
 
 
 def audit_sample_alignment(
-    audit: dict,
+    audit: dict[str, Any],
     modality_sample_ids: dict[str, list[str]],
     labels: list[int],
 ) -> list[str]:
     """Verify that sample IDs are identical across all modalities and label file."""
     log("Checking sample alignment across modalities...")
     
-    alignment = {
+    alignment: dict[str, Any] = {
         "all_modalities_identical": True,
         "label_count_matches_samples": True,
         "details": {},
@@ -237,14 +240,14 @@ def audit_sample_alignment(
 
 
 def audit_label_mappings(
-    audit: dict,
+    audit: dict[str, Any],
     sample_ids: list[str],
     labels: list[int],
 ) -> None:
     """Verify label→TCGA project mappings using the verification CSV."""
     log("Verifying label→TCGA project mappings...")
     
-    mapping_audit = {
+    mapping_audit: dict[str, Any] = {
         "verification_file_exists": VERIFICATION_FILE.exists(),
         "crosstab_file_exists": CROSSTAB_FILE.exists(),
         "mappings_verified": False,
@@ -336,7 +339,7 @@ def audit_label_mappings(
 
 
 def audit_class_distribution(
-    audit: dict,
+    audit: dict[str, Any],
     labels: list[int],
 ) -> None:
     """Check class counts for the four target cancer types."""
@@ -411,7 +414,7 @@ def audit_class_distribution(
     log(f"  Saved: {csv_path}")
 
 
-def audit_data_quality_streaming(audit: dict) -> None:
+def audit_data_quality_streaming(audit: dict[str, Any]) -> None:
     """Stream through each modality to check for data quality issues.
     
     Checks per modality:
@@ -531,7 +534,7 @@ def audit_data_quality_streaming(audit: dict) -> None:
 
 
 def audit_patient_id_structure(
-    audit: dict,
+    audit: dict[str, Any],
     sample_ids: list[str],
 ) -> None:
     """Analyze TCGA barcode structure to check for multi-sample patients."""
@@ -642,7 +645,7 @@ def main():
     log(f"Output directory: {OUTPUT_DIR}")
     log("")
     
-    audit = {
+    audit: dict[str, Any] = {
         "timestamp": datetime.now().isoformat(),
         "data_directory": str(DATA_DIR),
         "report_directory": str(REPORT_DIR),

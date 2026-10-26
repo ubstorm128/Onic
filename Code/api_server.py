@@ -18,7 +18,7 @@ import sys
 import time
 import json
 from pathlib import Path
-from typing import Dict, List, Any, Optional, Union
+from typing import Dict, List, Any, Optional, Union, Sequence
 
 import numpy as np
 from fastapi import FastAPI, HTTPException, UploadFile, File, Form, Response
@@ -282,7 +282,7 @@ def get_benchmarks():
 # ---------------------------------------------------------------------------
 # Prediction Inference Endpoints
 # ---------------------------------------------------------------------------
-def _resolve_modality_flags(modalities: Optional[List[Union[int, str]]]) -> List[int]:
+def _resolve_modality_flags(modalities: Optional[Sequence[Union[int, str]]]) -> List[int]:
     """Helper to convert modality flags or list of strings to binary [0, 1] integers."""
     if not modalities:
         return [1, 1, 1, 1]

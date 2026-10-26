@@ -1051,15 +1051,45 @@
       });
     }
 
+    // Template CSV Download Handler
+    const templateBtn = card ? card.querySelector('[data-mod-template]') : null;
+    if (templateBtn) {
+      templateBtn.addEventListener('click', async (e) => {
+        if (isApiOnline) {
+          e.preventDefault();
+          try {
+            const res = await fetch(`${API_BASE}/api/template/${mod}`);
+            if (res.ok) {
+              const blob = await res.blob();
+              const url = window.URL.createObjectURL(blob);
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = `template_${mod}.csv`;
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+              window.URL.revokeObjectURL(url);
+              return;
+            }
+          } catch (err) {
+            // Fall back to direct static file download via href
+            window.location.href = templateBtn.getAttribute('href') || `templates/template_${mod}.csv`;
+          }
+        }
+      });
+    }
+
     // Load Demo Sample for this Modality
     const loadSampleBtn = card ? card.querySelector('[data-load-mod-sample]') : null;
     if (loadSampleBtn) {
       loadSampleBtn.addEventListener('click', async () => {
         const prefix = PATIENT_PREFIX_MAP[activeStudioPatientIdx] || 'BRCA_Patient101';
-        const sampleUrl = `/sample_inputs/${prefix}_${mod}.csv`;
         try {
           loadSampleBtn.textContent = 'Loading...';
-          const res = await fetch(sampleUrl);
+          let res = await fetch(`sample_inputs/${prefix}_${mod}.csv`);
+          if (!res.ok && isApiOnline) {
+            res = await fetch(`${API_BASE}/sample_inputs/${prefix}_${mod}.csv`);
+          }
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
           const blob = await res.blob();
           const file = new File([blob], `${prefix}_${mod}.csv`, { type: 'text/csv' });

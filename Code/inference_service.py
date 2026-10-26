@@ -29,11 +29,18 @@ warnings.filterwarnings("ignore", category=UserWarning)
 
 CODE_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = CODE_DIR.parent / "project"
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
+WORKSPACE_ROOT = CODE_DIR.parent
+
+for p in [str(PROJECT_ROOT), str(WORKSPACE_ROOT)]:
+    if p not in sys.path:
+        sys.path.insert(0, p)
 
 import joblib
-from src.models.fusion import MultimodalCrossAttentionClassifier
+
+try:
+    from src.models.fusion import MultimodalCrossAttentionClassifier
+except ImportError:
+    from project.src.models.fusion import MultimodalCrossAttentionClassifier  # type: ignore[no-redef]
 
 # ---------------------------------------------------------------------------
 # Global Constants & Registries
@@ -98,7 +105,7 @@ CLASS_MAPPING = {
     },
 }
 
-EVAL_CONDITIONS = {
+EVAL_CONDITIONS: Dict[Tuple[int, ...], Tuple[str, str]] = {
     (1, 1, 1, 1): ("C0", "Complete Quad-Modal (Reference Standard)"),
     (0, 1, 1, 1): ("C1", "mRNA Missing (miRNA + CNV + Methy)"),
     (1, 0, 1, 1): ("C2", "miRNA Missing (mRNA + CNV + Methy)"),
@@ -291,7 +298,7 @@ class MultimodalInferenceEngine:
         else:
             # Standard matrix format: 1 row of sample values across feature columns
             # Check if first column is an ID column (e.g. 'sample' or 'patient_id')
-            first_col_name = str(df.columns[0]).lower()
+            first_col_name = f"{df.columns[0]}".lower()
             if first_col_name in ["sample", "sample_id", "id", "patient", "patient_id", "barcode"]:
                 df = df.drop(columns=[df.columns[0]])
 
