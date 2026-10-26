@@ -169,3 +169,21 @@ def test_prediction_consistency_with_offline_extracted_evals():
         for c_idx, code in enumerate(["BRCA", "HNSC", "LGG", "THCA"]):
             diff = abs(live_data["probabilities"][code] - expected_probs[c_idx])
             assert diff < 1e-3, f"Probability mismatch for {code} on sample {p_idx}: diff={diff}"
+
+
+def test_static_assets_serving():
+    """Verifies that histopathology micrograph images and static assets are served properly."""
+    expected_assets = [
+        "histopathology-of-invasive-ductal-carcinoma-of-the.jpg",
+        "oral-cancer-1-squamous-cell-carcinoma-histopathology.jpg",
+        "pnet-histopathology-he-200x.jpg",
+        "thyroid-papillary-carcinoma-histopathology-2.jpg",
+        "credits.json",
+        "banner.svg",
+        "model_workflow.svg",
+    ]
+    for asset in expected_assets:
+        res = client.get(f"/assets/{asset}")
+        assert res.status_code == 200, f"Asset /assets/{asset} failed with {res.status_code}"
+        assert len(res.content) > 0
+

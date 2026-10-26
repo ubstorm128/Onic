@@ -116,6 +116,7 @@ class PredictResponse(BaseModel):
 # Frontend Static File Serving
 # ---------------------------------------------------------------------------
 @app.get("/")
+@app.get("/index.html")
 def serve_index():
     return FileResponse(CODE_DIR / "index.html")
 
@@ -131,10 +132,15 @@ def serve_js():
 
 
 from fastapi.staticfiles import StaticFiles
+if (CODE_DIR / "assets").is_dir():
+    app.mount("/assets", StaticFiles(directory=CODE_DIR / "assets"), name="assets")
+    app.mount("/Code/assets", StaticFiles(directory=CODE_DIR / "assets"), name="code_assets")
 if (CODE_DIR / "sample_inputs").is_dir():
     app.mount("/sample_inputs", StaticFiles(directory=CODE_DIR / "sample_inputs"), name="sample_inputs")
+    app.mount("/Code/sample_inputs", StaticFiles(directory=CODE_DIR / "sample_inputs"), name="code_sample_inputs")
 if (CODE_DIR / "templates").is_dir():
     app.mount("/templates", StaticFiles(directory=CODE_DIR / "templates"), name="templates")
+    app.mount("/Code/templates", StaticFiles(directory=CODE_DIR / "templates"), name="code_templates")
 
 
 # ---------------------------------------------------------------------------
@@ -484,4 +490,4 @@ if __name__ == "__main__":
     print("  Serving at: http://127.0.0.1:8000")
     print("  Swagger UI: http://127.0.0.1:8000/docs")
     print("=" * 65 + "\n")
-    uvicorn.run("api_server:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run("api_server:app", host="127.0.0.1", port=8000, reload=True, app_dir=str(CODE_DIR))
